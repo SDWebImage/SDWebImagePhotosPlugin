@@ -28,15 +28,13 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/DreamPiggy/SDWebImagePhotosPlugin.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
+  s.osx.deployment_target = '10.13'
   s.ios.deployment_target = '8.0'
+  s.tvos.deployment_target = '10.0'
 
-  s.source_files = 'SDWebImagePhotosPlugin/Classes/**/*'
+  s.source_files = 'SDWebImagePhotosPlugin/Classes/**/*', 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.h'
+  s.module_map = 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.modulemap'
   
-  # s.resource_bundles = {
-  #   'SDWebImagePhotosPlugin' => ['SDWebImagePhotosPlugin/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Photos'
+  s.dependency 'SDWebImage/Core'
 end

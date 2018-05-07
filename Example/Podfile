@@ -1,7 +1,9 @@
 use_frameworks!
+inhibit_all_warnings!
 
 target 'SDWebImagePhotosPlugin_Example' do
   pod 'SDWebImagePhotosPlugin', :path => '../'
+  pod 'SDWebImage/Core', :git => 'https://github.com/rs/SDWebImage.git', :branch => '5.x'
 
   target 'SDWebImagePhotosPlugin_Tests' do
     inherit! :search_paths

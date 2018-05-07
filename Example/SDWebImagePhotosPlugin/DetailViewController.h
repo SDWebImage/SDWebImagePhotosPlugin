@@ -6,12 +6,10 @@
  * file that was distributed with this source code.
  */
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
-@interface SDAppDelegate : UIResponder <UIApplicationDelegate>
+@interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) NSURL *imageURL;
 
 @end

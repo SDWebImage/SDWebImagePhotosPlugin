@@ -6,12 +6,6 @@
  * file that was distributed with this source code.
  */
 
-@import UIKit;
+#import "SDWebImagePhotosError.h"
 
-@interface SDAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) UINavigationController *navigationController;
-
-@end
+NSErrorDomain const _Nonnull SDWebImagePhotosErrorDomain = @"SDWebImagePhotosErrorDomain";
