@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		323F89CC20A041F100E5EC7F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F89C820A041F000E5EC7F /* MasterViewController.m */; };
 		323F89CD20A041F100E5EC7F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F89C920A041F000E5EC7F /* DetailViewController.m */; };
-		323F89D020A0420E00E5EC7F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323F89CE20A0420D00E5EC7F /* DetailViewController.xib */; };
-		323F89D120A0420E00E5EC7F /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323F89CF20A0420D00E5EC7F /* MasterViewController.xib */; };
+		32DE261B20AAE1D200DF5574 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DE261920AAE1D200DF5574 /* DetailViewController.xib */; };
+		32DE261C20AAE1D200DF5574 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DE261A20AAE1D200DF5574 /* MasterViewController.xib */; };
 		5F3E4B49DD43B0D6B14CC192 /* Pods_SDWebImagePhotosPlugin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5514E8C1696453817A75987 /* Pods_SDWebImagePhotosPlugin_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -44,8 +44,8 @@
 		323F89C920A041F000E5EC7F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		323F89CA20A041F100E5EC7F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		323F89CB20A041F100E5EC7F /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		323F89CE20A0420D00E5EC7F /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = "../../../SDWebImage-Photos/Example/SDWebImage-Photos/DetailViewController.xib"; sourceTree = "<group>"; };
-		323F89CF20A0420D00E5EC7F /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MasterViewController.xib; path = "../../../SDWebImage-Photos/Example/SDWebImage-Photos/MasterViewController.xib"; sourceTree = "<group>"; };
+		32DE261920AAE1D200DF5574 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		32DE261A20AAE1D200DF5574 /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
 		5F5358DD7023C4E42145FCC6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImagePhotosPlugin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImagePhotosPlugin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,8 +143,8 @@
 				323F89C820A041F000E5EC7F /* MasterViewController.m */,
 				323F89CA20A041F100E5EC7F /* DetailViewController.h */,
 				323F89C920A041F000E5EC7F /* DetailViewController.m */,
-				323F89CF20A0420D00E5EC7F /* MasterViewController.xib */,
-				323F89CE20A0420D00E5EC7F /* DetailViewController.xib */,
+				32DE261920AAE1D200DF5574 /* DetailViewController.xib */,
+				32DE261A20AAE1D200DF5574 /* MasterViewController.xib */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -258,6 +258,9 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = DreamPiggy;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = H7W77QXGX2;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -287,11 +290,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				323F89D120A0420E00E5EC7F /* MasterViewController.xib in Resources */,
+				32DE261C20AAE1D200DF5574 /* MasterViewController.xib in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				323F89D020A0420E00E5EC7F /* DetailViewController.xib in Resources */,
+				32DE261B20AAE1D200DF5574 /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +570,7 @@
 			baseConfigurationReference = E572DC592529A86343DC9C10 /* Pods-SDWebImagePhotosPlugin_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H7W77QXGX2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDWebImagePhotosPlugin/SDWebImagePhotosPlugin-Prefix.pch";
 				INFOPLIST_FILE = "SDWebImagePhotosPlugin/SDWebImagePhotosPlugin-Info.plist";
@@ -582,6 +586,7 @@
 			baseConfigurationReference = 879A5B78D1F240E180B5A79A /* Pods-SDWebImagePhotosPlugin_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H7W77QXGX2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDWebImagePhotosPlugin/SDWebImagePhotosPlugin-Prefix.pch";
 				INFOPLIST_FILE = "SDWebImagePhotosPlugin/SDWebImagePhotosPlugin-Info.plist";
