@@ -107,13 +107,13 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     return [PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized;
 }
 
-#pragma mark - SDWebImageLoader
+#pragma mark - SDImageLoader
 
 - (BOOL)canLoadWithURL:(NSURL *)url {
     return url.sd_isPhotosURL;
 }
 
-- (id<SDWebImageOperation>)loadImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDWebImageLoaderProgressBlock)progressBlock completed:(SDWebImageLoaderCompletedBlock)completedBlock {
+- (id<SDWebImageOperation>)loadImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     BOOL isPhotosURL = url.sd_isPhotosURL;
     if (!isPhotosURL) {
         if (completedBlock) {
@@ -186,7 +186,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 // This is used for normal image loading (With `requestImage:` API)
-- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDWebImageLoaderProgressBlock)progressBlock completed:(SDWebImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
@@ -264,7 +264,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 // This is used for animated image loading (With `requestImageData:` API)
-- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDWebImageLoaderProgressBlock)progressBlock completed:(SDWebImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
@@ -303,7 +303,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
                     }
                     return;
                 }
-                UIImage *image = SDWebImageLoaderDecodeImageData(imageData, url, options, context);
+                UIImage *image = SDImageLoaderDecodeImageData(imageData, url, options, context);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (completedBlock) {
                         completedBlock(image, imageData, nil, YES);

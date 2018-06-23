@@ -1,5 +1,5 @@
 PODS:
-  - SDWebImage/Core (4.3.3)
+  - SDWebImage/Core (4.4.1)
   - SDWebImagePhotosPlugin (0.1.0):
     - SDWebImage/Core
 
@@ -16,11 +16,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SDWebImage:
-    :commit: 1f508335672ff3ec65adb31229121f10dd2dd149
+    :commit: 24861d29829c58275fb0a2513c58fcb785408d18
     :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
-  SDWebImage: c16d644f1f195cec9e630cbc25acaaabab25d1b0
+  SDWebImage: 2fd243f0dff71c0e55ef380e9ce81a0e0979b11e
   SDWebImagePhotosPlugin: 7aa108afd5bca1dc5ca072cdf125f064e8b7a615
 
 PODFILE CHECKSUM: d6e3b38d111de48b8dba146e3e0c639bdee0aa3a

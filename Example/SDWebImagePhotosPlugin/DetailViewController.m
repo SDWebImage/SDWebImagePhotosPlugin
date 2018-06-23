@@ -42,7 +42,8 @@
     }
     [self.imageView sd_setImageWithURL:self.imageURL
                       placeholderImage:nil
-                               options:SDWebImageCacheMemoryOnly];
+                               options:SDWebImageFromLoaderOnly
+                               context:@{SDWebImageContextStoreCacheType : @(SDImageCacheTypeNone)}];
 }
 
 - (void)viewDidLoad

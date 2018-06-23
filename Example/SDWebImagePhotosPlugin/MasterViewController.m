@@ -57,9 +57,6 @@
         // Setup Photos Loader
         SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
         
-        // Disable memory cache
-        ((SDImageCache *)SDWebImageManager.sharedManager.imageCache).config.shouldCacheImagesInMemory = NO;
-        
         // Photos Library Demo
         PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
                                                                                               subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
@@ -121,7 +118,8 @@
     cell.customTextLabel.text = [NSString stringWithFormat:@"Image #%ld", (long)indexPath.row];
     [cell.customImageView sd_setImageWithURL:self.objects[indexPath.row]
                             placeholderImage:placeholderImage
-                                     options:SDWebImageFromLoaderOnly | SDWebImageCacheMemoryOnly]; // Disable memory cache query/store
+                                     options:SDWebImageFromLoaderOnly
+                                     context:@{SDWebImageContextStoreCacheType : @(SDImageCacheTypeNone)}]; // Disable memory cache query/store
     return cell;
 }
 
