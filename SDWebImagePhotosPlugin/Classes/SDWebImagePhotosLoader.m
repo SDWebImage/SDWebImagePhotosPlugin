@@ -20,12 +20,6 @@ typedef UIImageOrientation SDImageOrientation;
 typedef CGImagePropertyOrientation SDImageOrientation;
 #endif
 
-@interface NSURL ()
-
-@property (nonatomic, copy, nullable) PHAsset *sd_asset;
-
-@end
-
 @interface SDWebImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
 
 @property (nonatomic, assign) PHImageRequestID requestID;
@@ -153,7 +147,6 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             NSString *localIdentifier = url.sd_assetLocalIdentifier;
             PHFetchResult<PHAsset *> *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:fetchOptions];
             asset = fetchResult.firstObject;
-            url.sd_asset = asset; // Store to the associate value
         }
         // Only support image
         if (!asset || asset.mediaType != PHAssetMediaTypeImage) {

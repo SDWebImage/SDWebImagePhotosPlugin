@@ -44,7 +44,7 @@ static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
 }
 
 - (void)setSd_asset:(PHAsset * _Nullable)sd_asset {
-    objc_setAssociatedObject(self, @selector(sd_asset), sd_asset, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(sd_asset), sd_asset, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (instancetype)sd_URLWithAssetLocalIdentifier:(NSString *)identifier {

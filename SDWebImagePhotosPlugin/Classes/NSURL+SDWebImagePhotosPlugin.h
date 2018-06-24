@@ -20,7 +20,7 @@
 /**
  The `PHAsset` value for Photos URL, or nil for other URL, or the `PHAsset` is not availble.
  */
-@property (nonatomic, copy, readonly, nullable) PHAsset *sd_asset;
+@property (nonatomic, strong, readonly, nullable) PHAsset *sd_asset;
 
 /**
  Check whether the current URL represents Photos URL.
