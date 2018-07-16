@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
     :branch: 5.x
     :git: https://github.com/rs/SDWebImage.git
   SDWebImagePhotosPlugin:
-    :path: ../
+    :path: "../"
 
 CHECKOUT OPTIONS:
   SDWebImage:
@@ -25,4 +25,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d6e3b38d111de48b8dba146e3e0c639bdee0aa3a
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
