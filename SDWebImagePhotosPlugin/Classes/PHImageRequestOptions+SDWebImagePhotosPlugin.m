@@ -7,6 +7,7 @@
  */
 
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
+#import <SDWebImage/SDWebImage.h>
 #import <objc/runtime.h>
 
 @implementation PHImageRequestOptions (SDWebImagePhotosPlugin)
@@ -16,7 +17,12 @@
     if (!value) {
         return SDWebImagePhotosLoaderPixelSize;
     }
-    return value.CGSizeValue;
+#if SD_MAC
+    CGSize targetSize = value.sizeValue;
+#else
+    CGSize targetSize = value.CGSizeValue;
+#endif
+    return targetSize;
 }
 
 - (void)setSd_targetSize:(CGSize)sd_targetSize {

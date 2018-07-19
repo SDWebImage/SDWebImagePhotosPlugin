@@ -1,5 +1,7 @@
 #ifdef __OBJC__
+#if __has_include(<UIKit/UIKit.h>)
 #import <UIKit/UIKit.h>
+#endif
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)

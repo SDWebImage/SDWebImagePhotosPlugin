@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TestCollectionViewItem">
+            <connections>
+                <outlet property="imageViewDisplay" destination="lLj-fr-xys" id="j3D-ih-c6v"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lLj-fr-xys">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="uCJ-6R-zwg"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="lLj-fr-xys" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hsh-42-w6n"/>
+                <constraint firstItem="lLj-fr-xys" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Xtl-lp-dRy"/>
+                <constraint firstAttribute="trailing" secondItem="lLj-fr-xys" secondAttribute="trailing" id="dQO-dU-XFQ"/>
+                <constraint firstAttribute="bottom" secondItem="lLj-fr-xys" secondAttribute="bottom" id="h3o-GZ-fXE"/>
+            </constraints>
+        </customView>
+        <collectionViewItem id="mFr-iv-o3X" customClass="TestCollectionViewItem">
+            <connections>
+                <outlet property="imageViewDisplay" destination="lLj-fr-xys" id="rEV-my-dXo"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="CV4-sj-c6r"/>
+            </connections>
+        </collectionViewItem>
+    </objects>
+</document>
