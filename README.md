@@ -85,8 +85,8 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.requestO
 ## Requirements
 
 + iOS 8+
-+ macOS 10.10+
-+ tvOS 9+
++ macOS 10.13+
++ tvOS 10+
 + Xcode 9+
 
 ## Author

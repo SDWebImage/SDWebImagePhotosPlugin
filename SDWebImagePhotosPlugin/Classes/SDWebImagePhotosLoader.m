@@ -198,7 +198,11 @@ typedef CGImagePropertyOrientation SDImageOrientation;
                 scale = 1;
             }
         } else {
+#if SD_MAC
+            scale = [NSScreen mainScreen].backingScaleFactor;
+#else
             scale = [UIScreen mainScreen].scale;
+#endif
         }
         targetSize = CGSizeMake(asset.pixelHeight * scale, asset.pixelHeight * scale);
     }

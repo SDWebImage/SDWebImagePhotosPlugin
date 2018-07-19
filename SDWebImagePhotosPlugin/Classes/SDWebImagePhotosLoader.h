@@ -12,6 +12,7 @@
 
 #import <Photos/Photos.h>
 #import "NSURL+SDWebImagePhotosPlugin.h"
+#import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
 
 // The imgae loader to load image asset from Photos library. To control single image request options, use the context option in `SDWebImagePhotosDefine.h`.
 // @note Use `NSURL+SDWebImagePhotosPlugin.h` category to create Photos URL instead of string.
