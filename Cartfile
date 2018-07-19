@@ -1,1 +1,1 @@
-github "rs/SDWebImage"
+github "rs/SDWebImage" ~> 5.0

@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage/Core (4.4.1)
+  - SDWebImage/Core (5.0.0-beta)
   - SDWebImagePhotosPlugin (0.1.0):
-    - SDWebImage/Core
+    - SDWebImage/Core (~> 5.0.0-beta)
 
 DEPENDENCIES:
   - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
@@ -12,17 +12,17 @@ EXTERNAL SOURCES:
     :branch: 5.x
     :git: https://github.com/rs/SDWebImage.git
   SDWebImagePhotosPlugin:
-    :path: "../"
+    :path: ../
 
 CHECKOUT OPTIONS:
   SDWebImage:
-    :commit: 24861d29829c58275fb0a2513c58fcb785408d18
+    :commit: d5b60c6b39fdcd5d640ebf5c88b1279515291540
     :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
-  SDWebImage: 2fd243f0dff71c0e55ef380e9ce81a0e0979b11e
-  SDWebImagePhotosPlugin: 7aa108afd5bca1dc5ca072cdf125f064e8b7a615
+  SDWebImage: 55c787b164fabe07f2a4d5307f6e1be7960fb9be
+  SDWebImagePhotosPlugin: e792a1a12a8eb2af877a90dc1afe1f4245ae2e71
 
 PODFILE CHECKSUM: d6e3b38d111de48b8dba146e3e0c639bdee0aa3a
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0
