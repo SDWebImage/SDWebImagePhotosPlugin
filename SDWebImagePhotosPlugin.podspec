@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/DreamPiggy/SDWebImagePhotosPlugin'
+  s.homepage         = 'https://github.com/SDWebImage/SDWebImagePhotosPlugin'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
-  s.source           = { :git => 'https://github.com/DreamPiggy/SDWebImagePhotosPlugin.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/SDWebImage/SDWebImagePhotosPlugin.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.osx.deployment_target = '10.13'
