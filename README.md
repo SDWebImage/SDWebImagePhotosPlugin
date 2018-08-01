@@ -17,14 +17,14 @@ To support Photos Library plugin. Firstly add the photos loader to image manager
 
 ```objectivec
 // Assign loader to manager
-SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedCache loader:SDWebImagePhotoLoader.sharedLoader];
+SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedCache loader:SDWebImagePhotosLoader.sharedLoader];
 ```
 
 + Swift
 
 ```swift
 // Assign loader to manager
-let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDWebImagePhotoLoader.shared)
+let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDWebImagePhotosLoader.shared)
 ```
 
 To start load Photos Library image, use the `NSURL+SDWebImagePhotosPlugin` to create a Photos URL and call View Category method.
@@ -63,7 +63,7 @@ To specify custom options like `PHFetchOptions` or `PHImageRequestOptions`. Eith
 
 ```objectivec
 // loader-level control
-SDWebImagePhotoLoader.sharedLoader.fetchOptions = fetchOptions;
+SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 // request-level control
 [imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageCustomManager: manager}];
 ```
@@ -72,7 +72,7 @@ SDWebImagePhotoLoader.sharedLoader.fetchOptions = fetchOptions;
 
 ```swift
 // loader-level control
-SDWebImagePhotoLoader.shared.fetchOptions = fetchOptions
+SDWebImagePhotosLoader.shared.fetchOptions = fetchOptions
 // request-level control
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.requestOptions: requestOptions, .customManager: manager])
 ```
