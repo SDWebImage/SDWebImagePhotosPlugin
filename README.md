@@ -13,22 +13,49 @@ SDWebImagePhotosPlugin is a plugin for [SDWebImage](https://github.com/rs/SDWebI
 By using this plugin, it allows you to use your familiar View Category method from SDWebImage, to load Photos image with `PHAsset` or `localIdentifier`.
 
 ## Usage
-To support Photos Library plugin. Firstly add the photos loader to image manager. You can add to the default manager using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager), or create custom manager for usage.
+**Important!** To use Photos Library plugin. Firstly you need to register the photos loader to image manager.
+
+There are two ways to register the photos loader. One for temporarily usage (when providing URL is definitely Photos URL but not HTTP URL), and another for global support (don't need any check, support both HTTP URL as well as Photos URL).
+
+#### Use custom manager (temporarily)
+You can create custom manager for temporary usage. When you use custom manager, be sure to specify `SDWebImageCustomManager` context option with your custom manager for View Category methods.
 
 + Objective-C
 
 ```objectivec
-// Assign loader to manager
+// Assign loader to custom manager
 SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedCache loader:SDWebImagePhotosLoader.sharedLoader];
 ```
 
 + Swift
 
 ```swift
-// Assign loader to manager
+// Assign loader to custom manager
 let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDWebImagePhotosLoader.shared)
 ```
 
+#### Use loaders manager (globally)
+You can replace the default manager using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager) to support both HTTP && Photos URL globally. Put these code just at the application launch time before any SDWebImage loading was triggered.
+
++ Objective-C
+
+```objectivec
+// Supports HTTP URL as well as Photos URL globally
+SDImageLoadersManager.sharedManager.loaders = @[SDWebImageDownloader.sharedDownloader, SDWebImagePhotosLoader.sharedLoader];
+// Replace default manager's loader implementation
+SDWebImageManager.defaultImageLoader = SDImageLoadersManager.sharedManager;
+```
+
++ Swift
+
+```swift
+// Supports HTTP URL as well as Photos URL globally
+SDImageLoadersManager.shared.loaders = [SDWebImageDownloader.shared, SDWebImagePhotosLoader.shared]
+// Replace default manager's loader implementation
+SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
+```
+
+#### Load Images
 To start load Photos Library image, use the `NSURL+SDWebImagePhotosPlugin` to create a Photos URL and call View Category method.
 
 + Objective-C
@@ -41,7 +68,7 @@ NSURL *photosURL = [NSURL sd_URLWithAsset:asset];
 NSString *identifier;
 NSURL *potosURL = [NSURL sd_URLWithAssetLocalIdentifier:identifier];
 
-// Load image
+// Load image (assume using custom manager)
 [imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageCustomManager: manager}];
 ```
 
@@ -55,10 +82,14 @@ let photosURL = NSURL.sd_URL(with: asset)
 let identifier: String
 let potosURL = NSURL.sd_URL(withAssetLocalIdentifier: identifier)
 
-// Load image
+// Load image (assume using custom manager)
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context: [.customManager: manager])
 ```
 
+#### Animated Images
+SDWebImagePhotosPlugin supports GIF images stored in Photos Library as well. Just use the same API as normal images to query the asset. We will query the image data and decode the animated images (compatible with `UIImageView` as well as [SDAnimatedImageView](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50))
+
+#### Custom Options
 To specify custom options like `PHFetchOptions` or `PHImageRequestOptions`. Either to change the property in loader, or provide a context options for each Photos Library image request.
 
 + Objective-C
@@ -67,6 +98,8 @@ To specify custom options like `PHFetchOptions` or `PHImageRequestOptions`. Eith
 // loader-level control
 SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 // request-level control
+PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
+requestOptions.networkAccessAllowed = YES;
 [imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageCustomManager: manager}];
 ```
 
@@ -76,7 +109,9 @@ SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 // loader-level control
 SDWebImagePhotosLoader.shared.fetchOptions = fetchOptions
 // request-level control
-imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.requestOptions: requestOptions, .customManager: manager])
+let requestOptions = PHImageRequestOptions()
+requestOptions.networkAccessAllowed = true
+imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosImageRequestOptions: requestOptions, .customManager: manager])
 ```
 
 ## Tips
@@ -111,6 +146,18 @@ Note that because the dependency SDWebImage currently is in beta. You should use
 ```
 github "SDWebImage/SDWebImagePhotosPlugin"
 ```
+
+## Demo
+
+If you have some issue about usage, SDWebImagePhotosPlugin provide a demo for iOS && macOS platform. To run the demo, clone the repo and run the following command.
+
+```bash
+cd Example/
+pod install
+open SDWebImagePhotosPlugin.xcworkspace
+```
+
+After the Xcode project was opened, click `Run` to build and run the demo.
 
 ## Author
 
