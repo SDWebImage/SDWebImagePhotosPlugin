@@ -12,19 +12,48 @@ SDWebImagePhotosPlugin is a plugin for [SDWebImage](https://github.com/rs/SDWebI
 
 By using this plugin, it allows you to use your familiar View Category method from SDWebImage, to load Photos image with `PHAsset` or `localIdentifier`.
 
+
+## Requirements
+
++ iOS 8+
++ macOS 10.13+
++ tvOS 10+
++ Xcode 9+
+
+## Installation
+
+#### CocoaPods
+
+SDWebImagePhotosPlugin is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'SDWebImagePhotosPlugin'
+```
+
+#### Carthage
+
+SDWebImagePhotosPlugin is available through [Carthage](https://github.com/Carthage/Carthage).
+
+Note that because the dependency SDWebImage currently is in beta. You should use `Carthage v0.30.1` or above to support beta [sem-version](https://semver.org/).
+
+```
+github "SDWebImage/SDWebImagePhotosPlugin"
+```
+
 ## Usage
 **Important!** To use Photos Library plugin. Firstly you need to register the photos loader to image manager.
 
 There are two ways to register the photos loader. One for temporarily usage (when providing URL is definitely Photos URL but not HTTP URL), and another for global support (don't need any check, support both HTTP URL as well as Photos URL).
 
 #### Use custom manager (temporarily)
-You can create custom manager for temporary usage. When you use custom manager, be sure to specify `SDWebImageCustomManager` context option with your custom manager for View Category methods.
+You can create custom manager for temporary usage. When you use custom manager, be sure to specify `SDWebImageContextCustomManager` context option with your custom manager for View Category methods.
 
 + Objective-C
 
 ```objectivec
 // Assign loader to custom manager
-SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedCache loader:SDWebImagePhotosLoader.sharedLoader];
+SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDWebImagePhotosLoader.sharedLoader];
 ```
 
 + Swift
@@ -35,7 +64,7 @@ let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDWebImagePh
 ```
 
 #### Use loaders manager (globally)
-You can replace the default manager using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager) to support both HTTP && Photos URL globally. Put these code just at the application launch time before any SDWebImage loading was triggered.
+You can replace the default manager's loader implementation using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager) to support both HTTP && Photos URL globally. Put these code just at the application launch time (or time just before `SDWebImageManager.sharedManager` initialized).
 
 + Objective-C
 
@@ -69,7 +98,7 @@ NSString *identifier;
 NSURL *potosURL = [NSURL sd_URLWithAssetLocalIdentifier:identifier];
 
 // Load image (assume using custom manager)
-[imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageCustomManager: manager}];
+[imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextCustomManager: manager}];
 ```
 
 + Swift
@@ -105,7 +134,7 @@ SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 // allows iCloud Photos Library
 PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
 requestOptions.networkAccessAllowed = YES;
-[imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageCustomManager: manager}];
+[imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageContextCustomManager: manager}];
 ```
 
 + Swift
@@ -128,34 +157,6 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 
 1. Since Photos Library image is already stored on the device disk. And query speed is fast enough for small resolution image. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage. And use `SDWebImageFromLoaderOnly` to disable cache query.
 2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (by default) to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
-
-## Requirements
-
-+ iOS 8+
-+ macOS 10.13+
-+ tvOS 10+
-+ Xcode 9+
-
-## Installation
-
-#### CocoaPods
-
-SDWebImagePhotosPlugin is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'SDWebImagePhotosPlugin'
-```
-
-#### Carthage
-
-SDWebImagePhotosPlugin is available through [Carthage](https://github.com/Carthage/Carthage).
-
-Note that because the dependency SDWebImage currently is in beta. You should use `Carthage v0.30.1` or above to support beta [sem-version](https://semver.org/).
-
-```
-github "SDWebImage/SDWebImagePhotosPlugin"
-```
 
 ## Demo
 
