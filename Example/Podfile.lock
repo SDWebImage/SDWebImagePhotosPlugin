@@ -1,11 +1,17 @@
 PODS:
+  - Expecta (1.0.6)
   - SDWebImage/Core (5.0.0-beta3)
   - SDWebImagePhotosPlugin (0.1.1):
     - SDWebImage/Core (~> 5.0.0-beta)
 
 DEPENDENCIES:
+  - Expecta
   - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImagePhotosPlugin (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Expecta
 
 EXTERNAL SOURCES:
   SDWebImage:
@@ -20,9 +26,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
   SDWebImagePhotosPlugin: 4976eb48566aec15bbd0e6f92a4980570172eb12
 
-PODFILE CHECKSUM: ba79f02637d8a9a6f597a92239ee648789cea74c
+PODFILE CHECKSUM: 6680009759cc4cfe5fb285144f541a8b9218710e
 
 COCOAPODS: 1.5.3

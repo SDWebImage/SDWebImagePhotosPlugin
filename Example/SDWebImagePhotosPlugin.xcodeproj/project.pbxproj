@@ -18,6 +18,15 @@
 		323FADD321009EDB0043BD86 /* TestCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADD221009EDB0043BD86 /* TestCollectionView.m */; };
 		323FADDB2100AE730043BD86 /* TestCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADDA2100AE730043BD86 /* TestCollectionViewItem.m */; };
 		323FADDD2100AE940043BD86 /* TestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323FADDC2100AE940043BD86 /* TestCollectionViewItem.xib */; };
+		32893E5D213EAAF7007FCEC7 /* SDTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E5B213EAAF7007FCEC7 /* SDTestCase.m */; };
+		32893E5E213EAAF7007FCEC7 /* SDPhotosPluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */; };
+		32893E61213EAE3B007FCEC7 /* SystemAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E60213EAE3B007FCEC7 /* SystemAlert.m */; };
+		32893E69213EB679007FCEC7 /* TestImageAnimated.apng in Resources */ = {isa = PBXBuildFile; fileRef = 32893E63213EB679007FCEC7 /* TestImageAnimated.apng */; };
+		32893E6A213EB679007FCEC7 /* TestImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32893E64213EB679007FCEC7 /* TestImage.jpg */; };
+		32893E6B213EB679007FCEC7 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 32893E65213EB679007FCEC7 /* TestImage.png */; };
+		32893E6C213EB679007FCEC7 /* TestImageStatic.webp in Resources */ = {isa = PBXBuildFile; fileRef = 32893E66213EB679007FCEC7 /* TestImageStatic.webp */; };
+		32893E6D213EB679007FCEC7 /* TestImageAnimated.webp in Resources */ = {isa = PBXBuildFile; fileRef = 32893E67213EB679007FCEC7 /* TestImageAnimated.webp */; };
+		32893E6E213EB679007FCEC7 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 32893E68213EB679007FCEC7 /* TestImage.gif */; };
 		32DE261B20AAE1D200DF5574 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DE261920AAE1D200DF5574 /* DetailViewController.xib */; };
 		32DE261C20AAE1D200DF5574 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DE261A20AAE1D200DF5574 /* MasterViewController.xib */; };
 		5F3E4B49DD43B0D6B14CC192 /* Pods_SDWebImagePhotosPlugin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5514E8C1696453817A75987 /* Pods_SDWebImagePhotosPlugin_Example.framework */; };
@@ -32,7 +41,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		C2B2ED5F25E0B8983BA93289 /* Pods_SDWebImagePhotosPlugin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1DE36DA8B9EE2242A25BCD /* Pods_SDWebImagePhotosPlugin_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +77,17 @@
 		323FADD92100AE730043BD86 /* TestCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewItem.h; sourceTree = "<group>"; };
 		323FADDA2100AE730043BD86 /* TestCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewItem.m; sourceTree = "<group>"; };
 		323FADDC2100AE940043BD86 /* TestCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCollectionViewItem.xib; sourceTree = "<group>"; };
+		32893E5A213EAAF7007FCEC7 /* SDTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestCase.h; sourceTree = "<group>"; };
+		32893E5B213EAAF7007FCEC7 /* SDTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestCase.m; sourceTree = "<group>"; };
+		32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotosPluginTests.m; sourceTree = "<group>"; };
+		32893E5F213EAE3B007FCEC7 /* SystemAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemAlert.h; sourceTree = "<group>"; };
+		32893E60213EAE3B007FCEC7 /* SystemAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemAlert.m; sourceTree = "<group>"; };
+		32893E63213EB679007FCEC7 /* TestImageAnimated.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.apng; sourceTree = "<group>"; };
+		32893E64213EB679007FCEC7 /* TestImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestImage.jpg; sourceTree = "<group>"; };
+		32893E65213EB679007FCEC7 /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
+		32893E66213EB679007FCEC7 /* TestImageStatic.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageStatic.webp; sourceTree = "<group>"; };
+		32893E67213EB679007FCEC7 /* TestImageAnimated.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.webp; sourceTree = "<group>"; };
+		32893E68213EB679007FCEC7 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
 		32DE261920AAE1D200DF5574 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		32DE261A20AAE1D200DF5574 /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
 		5D78672539E09912614EBC63 /* Pods_SDWebImagePhotosPlugin_Example_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImagePhotosPlugin_Example_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +107,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6BA8653594106D1AC8810F79 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -156,6 +174,19 @@
 				323FADC921008DA00043BD86 /* SDWebImagePhotosPlugin_Example_macOS.entitlements */,
 			);
 			path = "SDWebImagePhotosPlugin_Example macOS";
+			sourceTree = "<group>";
+		};
+		32893E62213EB679007FCEC7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				32893E63213EB679007FCEC7 /* TestImageAnimated.apng */,
+				32893E64213EB679007FCEC7 /* TestImage.jpg */,
+				32893E65213EB679007FCEC7 /* TestImage.png */,
+				32893E66213EB679007FCEC7 /* TestImageStatic.webp */,
+				32893E67213EB679007FCEC7 /* TestImageAnimated.webp */,
+				32893E68213EB679007FCEC7 /* TestImage.gif */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -228,7 +259,12 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				32893E62213EB679007FCEC7 /* Images */,
+				32893E5A213EAAF7007FCEC7 /* SDTestCase.h */,
+				32893E5B213EAAF7007FCEC7 /* SDTestCase.m */,
+				32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */,
+				32893E5F213EAE3B007FCEC7 /* SystemAlert.h */,
+				32893E60213EAE3B007FCEC7 /* SystemAlert.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -316,6 +352,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				C68897AF406C624CFEEE7361 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -396,7 +433,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32893E69213EB679007FCEC7 /* TestImageAnimated.apng in Resources */,
+				32893E6A213EB679007FCEC7 /* TestImage.jpg in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				32893E6B213EB679007FCEC7 /* TestImage.png in Resources */,
+				32893E6D213EB679007FCEC7 /* TestImageAnimated.webp in Resources */,
+				32893E6E213EB679007FCEC7 /* TestImage.gif in Resources */,
+				32893E6C213EB679007FCEC7 /* TestImageStatic.webp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +520,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Example macOS/Pods-SDWebImagePhotosPlugin_Example macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C68897AF406C624CFEEE7361 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F9B4F4A32B361E38382808B3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,7 +588,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				32893E5D213EAAF7007FCEC7 /* SDTestCase.m in Sources */,
+				32893E61213EAE3B007FCEC7 /* SystemAlert.m in Sources */,
+				32893E5E213EAAF7007FCEC7 /* SDPhotosPluginTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,4 +32,15 @@ script:
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme SDWebImagePhotosPlugin-Example -sdk iphonesimulator -destination 'name=iPhone 6s' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme SDWebImagePhotosPlugin-Example -sdk iphonesimulator -destination 'name=iPhone 8' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+
+  - echo Clean DerivedData
+  - mkdir DerivedData
+  - rm -rf ~/Library/Developer/Xcode/DerivedData
+
+  - echo Run the tests
+  - xcodebuild test -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme 'SDWebImagePhotosPlugin_Tests' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty -c
+  - mv ~/Library/Developer/Xcode/DerivedData/ ./DerivedData/iOS
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash) -D './DerivedData/iOS' -J '^SDWebImagePhotosPlugin$' -F 'iOS'
