@@ -7,6 +7,7 @@
  */
 
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
+#import "SDWebImagePhotosDefine.h"
 #import <SDWebImage/SDWebImage.h>
 #import <objc/runtime.h>
 

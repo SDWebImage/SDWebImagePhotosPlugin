@@ -7,7 +7,6 @@
  */
 
 #import <Photos/Photos.h>
-#import "SDWebImagePhotosDefine.h"
 
 // PHImageRequestOptions category to provide targetSize and contentMode when fetch Photos image asset
 @interface PHImageRequestOptions (SDWebImagePhotosPlugin)

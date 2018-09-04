@@ -7,15 +7,12 @@
  */
 
 #import <SDWebImage/SDWebImage.h>
-
-#if SD_UIKIT || SD_MAC
-
 #import <Photos/Photos.h>
-#import "NSURL+SDWebImagePhotosPlugin.h"
-#import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
+#import "SDWebImagePhotosDefine.h"
 
-// The imgae loader to load image asset from Photos library. To control single image request options, use the context option in `SDWebImagePhotosDefine.h`.
-// @note Use `NSURL+SDWebImagePhotosPlugin.h` category to create Photos URL instead of string.
+// The imgae loader to load image asset from Photos library. You need to register the loader into manager firstly. Use `@import SDWebImagePhotosPlugin` to import full framework instead of each header.
+// @note To control single image request options, use the context option in `SDWebImagePhotosDefine.h`.
+// @note Use `NSURL+SDWebImagePhotosPlugin.h` category to create Photos URL instead of string. Use `PHImageRequestOptions+SDWebImagePhotosPlugin.h` category to provide extra info for request options.
 // @note And it's also strongly recommeded to totally disable memory cache if you want to query batch of Photos images frequently. You can do this by using `SDWebImageFromLoaderOnly` options during image request. And you can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storing. This is because Photos framework manage the image cache by their own process outside your application process and can reduce memory usage.
 
 @interface SDWebImagePhotosLoader : NSObject <SDImageLoader>
@@ -42,5 +39,3 @@
 @property (nonatomic, strong, nullable) PHImageRequestOptions *imageRequestOptions;
 
 @end
-
-#endif

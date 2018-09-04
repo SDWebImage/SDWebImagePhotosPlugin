@@ -7,9 +7,7 @@
  */
 
 #import "SDWebImagePhotosLoader.h"
-
-#if SD_UIKIT || SD_MAC
-
+#import "NSURL+SDWebImagePhotosPlugin.h"
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
 #import "SDWebImagePhotosError.h"
 #import <objc/runtime.h>
@@ -321,6 +319,3 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 @end
-
-#endif
-
