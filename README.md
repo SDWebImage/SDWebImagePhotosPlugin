@@ -89,6 +89,27 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.requestO
 + tvOS 10+
 + Xcode 9+
 
+## Installation
+
+#### CocoaPods
+
+SDWebImagePhotosPlugin is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'SDWebImagePhotosPlugin'
+```
+
+#### Carthage
+
+SDWebImagePhotosPlugin is available through [Carthage](https://github.com/Carthage/Carthage).
+
+Note that because the dependency SDWebImage currently is in beta. You should use `Carthage v0.30.1` or above to support beta [sem-version](https://semver.org/).
+
+```
+github "SDWebImage/SDWebImagePhotosPlugin"
+```
+
 ## Author
 
 DreamPiggy, lizhuoli1126@126.com
