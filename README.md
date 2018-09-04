@@ -89,15 +89,20 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context: [.customM
 #### Animated Images
 SDWebImagePhotosPlugin supports GIF images stored in Photos Library as well. Just use the same API as normal images to query the asset. We will query the image data and decode the animated images (compatible with `UIImageView` as well as [SDAnimatedImageView](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50))
 
-#### Custom Options
-To specify custom options like `PHFetchOptions` or `PHImageRequestOptions`. Either to change the property in loader, or provide a context options for each Photos Library image request.
+#### Fetch/Request Options
+To specify options like `PHFetchOptions` or `PHImageRequestOptions` for Photos Library. Either to change the correspond properties in loader, or provide a context options for each image request.
 
 + Objective-C
 
 ```objectivec
-// loader-level control
+// loader-level options
+// ignore iCloud Shared Album (`localIdentifier` Photos URL only)
+PHFetchOptions *fetchOptions = [PHFetchOptions new];
+fetchOptions.predicate = [NSPredicate predicateWithFormat:@"sourceType != %d", PHAssetSourceTypeCloudShared];
 SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
-// request-level control
+
+// request-level options
+// allows iCloud Photos Library
 PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
 requestOptions.networkAccessAllowed = YES;
 [imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageCustomManager: manager}];
@@ -106,9 +111,14 @@ requestOptions.networkAccessAllowed = YES;
 + Swift
 
 ```swift
-// loader-level control
+// loader-level options
+// ignore iCloud Shared Album (`localIdentifier` Photos URL only)
+let fetchOptions = PHFetchOptions()
+fetchOptions.predicate = NSPredicate(format: "sourceType != %d", PHAssetSourceType.typeCloudShared.rawValue)
 SDWebImagePhotosLoader.shared.fetchOptions = fetchOptions
-// request-level control
+
+// request-level options
+// allows iCloud Photos Library
 let requestOptions = PHImageRequestOptions()
 requestOptions.networkAccessAllowed = true
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosImageRequestOptions: requestOptions, .customManager: manager])
@@ -117,7 +127,7 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 ## Tips
 
 1. Since Photos Library image is already stored on the device disk. And query speed is fast enough for small resolution image. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage. And use `SDWebImageFromLoaderOnly` to disable cache query.
-2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
+2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (by default) to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
 
 ## Requirements
 
