@@ -36,5 +36,5 @@ TODO: Add long description of the pod here.
   s.module_map = 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.modulemap'
   
   s.frameworks = 'Photos'
-  s.dependency 'SDWebImage/Core', '~> 5.0.0-beta'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta3'
 end
