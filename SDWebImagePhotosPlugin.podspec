@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImagePhotosPlugin'
-  s.version          = '0.1.1'
-  s.summary          = 'A short description of SDWebImagePhotosPlugin.'
+  s.version          = '0.1.2'
+  s.summary          = 'A SDWebImage plugin to support Photos framework image loading.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
