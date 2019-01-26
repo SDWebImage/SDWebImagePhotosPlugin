@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImagePhotosPlugin'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A SDWebImage plugin to support Photos framework image loading.'
 
 # This description is used to generate tags and improve search results.
@@ -36,5 +36,5 @@ TODO: Add long description of the pod here.
   s.module_map = 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.modulemap'
   
   s.frameworks = 'Photos'
-  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta3'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta4'
 end
