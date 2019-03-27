@@ -81,11 +81,6 @@
 {
     [self.tableView reloadData];
 }
-							
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
 
 #pragma mark - Table View
 
