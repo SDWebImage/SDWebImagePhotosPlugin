@@ -506,7 +506,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Example macOS/Pods-SDWebImagePhotosPlugin_Example macOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Example macOS/Pods-SDWebImagePhotosPlugin_Example macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePhotosPlugin-macOS/SDWebImagePhotosPlugin.framework",
 			);
@@ -517,7 +517,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Example macOS/Pods-SDWebImagePhotosPlugin_Example macOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Example macOS/Pods-SDWebImagePhotosPlugin_Example macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C68897AF406C624CFEEE7361 /* [CP] Embed Pods Frameworks */ = {
@@ -526,7 +526,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -535,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9B4F4A32B361E38382808B3 /* [CP] Embed Pods Frameworks */ = {
@@ -544,7 +544,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Example/Pods-SDWebImagePhotosPlugin_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Example/Pods-SDWebImagePhotosPlugin_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImagePhotosPlugin-iOS/SDWebImagePhotosPlugin.framework",
 			);
@@ -555,7 +555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Example/Pods-SDWebImagePhotosPlugin_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImagePhotosPlugin_Example/Pods-SDWebImagePhotosPlugin_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
