@@ -56,29 +56,34 @@
         self.objects = [NSMutableArray array];
         // Setup Photos Loader
         SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
-        
         // Photos Library Demo
-        PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
-                                                                                              subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
-                                                                                              options:nil];
-        PHAssetCollection *collection = result.firstObject;
-        PHFetchOptions *fetchOptions = [PHFetchOptions new];
-        fetchOptions.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
-        fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-        PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
-        for (PHAsset *asset in assets) {
-            // You can use local identifier of `PHAsset` to create URL
-//            NSURL *url = [NSURL sd_URLWithAssetLocalIdentifier:asset.localIdentifier];
-            // Or even `PHAsset` itself
-            NSURL *url = [NSURL sd_URLWithAsset:asset];
-            [self.objects addObject:url];
-        }
+        [self fetchAssets];
     }
     return self;
 }
 
+- (void)fetchAssets {
+    [self.objects removeAllObjects];
+    PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                                          subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
+                                                                                          options:nil];
+    PHAssetCollection *collection = result.firstObject;
+    PHFetchOptions *fetchOptions = [PHFetchOptions new];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
+    for (PHAsset *asset in assets) {
+        // You can use local identifier of `PHAsset` to create URL
+        //            NSURL *url = [NSURL sd_URLWithAssetLocalIdentifier:asset.localIdentifier];
+        // Or even `PHAsset` itself
+        NSURL *url = [NSURL sd_URLWithAsset:asset];
+        [self.objects addObject:url];
+    }
+}
+
 - (void)reloadData
 {
+    [self fetchAssets];
     [self.tableView reloadData];
 }
 
