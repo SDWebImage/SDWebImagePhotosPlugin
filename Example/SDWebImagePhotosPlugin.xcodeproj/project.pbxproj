@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F744EBB4B4D411C93B06882 /* Pods_SDWebImagePhotosPlugin_Example_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D78672539E09912614EBC63 /* Pods_SDWebImagePhotosPlugin_Example_macOS.framework */; };
+		323ADD3B2253C1EA0083BC1C /* TestCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 323ADD392253C1EA0083BC1C /* TestCollectionViewItem.m */; };
+		323ADD3C2253C1EA0083BC1C /* TestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323ADD3A2253C1EA0083BC1C /* TestCollectionViewItem.xib */; };
 		323F89CC20A041F100E5EC7F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F89C820A041F000E5EC7F /* MasterViewController.m */; };
 		323F89CD20A041F100E5EC7F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F89C920A041F000E5EC7F /* DetailViewController.m */; };
 		323FADBD21008D9F0043BD86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADBC21008D9F0043BD86 /* AppDelegate.m */; };
@@ -15,9 +17,6 @@
 		323FADC221008DA00043BD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323FADC121008DA00043BD86 /* Assets.xcassets */; };
 		323FADC521008DA00043BD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323FADC321008DA00043BD86 /* Main.storyboard */; };
 		323FADC821008DA00043BD86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADC721008DA00043BD86 /* main.m */; };
-		323FADD321009EDB0043BD86 /* TestCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADD221009EDB0043BD86 /* TestCollectionView.m */; };
-		323FADDB2100AE730043BD86 /* TestCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FADDA2100AE730043BD86 /* TestCollectionViewItem.m */; };
-		323FADDD2100AE940043BD86 /* TestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323FADDC2100AE940043BD86 /* TestCollectionViewItem.xib */; };
 		32893E5D213EAAF7007FCEC7 /* SDTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E5B213EAAF7007FCEC7 /* SDTestCase.m */; };
 		32893E5E213EAAF7007FCEC7 /* SDPhotosPluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */; };
 		32893E61213EAE3B007FCEC7 /* SystemAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 32893E60213EAE3B007FCEC7 /* SystemAlert.m */; };
@@ -57,6 +56,9 @@
 
 /* Begin PBXFileReference section */
 		024638F179B3CA53E68D73F9 /* Pods-SDWebImagePhotosPlugin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImagePhotosPlugin_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImagePhotosPlugin_Tests/Pods-SDWebImagePhotosPlugin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		323ADD382253C1EA0083BC1C /* TestCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewItem.h; sourceTree = "<group>"; };
+		323ADD392253C1EA0083BC1C /* TestCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewItem.m; sourceTree = "<group>"; };
+		323ADD3A2253C1EA0083BC1C /* TestCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCollectionViewItem.xib; sourceTree = "<group>"; };
 		323F89C820A041F000E5EC7F /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		323F89C920A041F000E5EC7F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		323F89CA20A041F100E5EC7F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -72,11 +74,6 @@
 		323FADC721008DA00043BD86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		323FADC921008DA00043BD86 /* SDWebImagePhotosPlugin_Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWebImagePhotosPlugin_Example_macOS.entitlements; sourceTree = "<group>"; };
 		323FADD0210095550043BD86 /* PHCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHCollection.h; sourceTree = "<group>"; };
-		323FADD121009EDB0043BD86 /* TestCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionView.h; sourceTree = "<group>"; };
-		323FADD221009EDB0043BD86 /* TestCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionView.m; sourceTree = "<group>"; };
-		323FADD92100AE730043BD86 /* TestCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewItem.h; sourceTree = "<group>"; };
-		323FADDA2100AE730043BD86 /* TestCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewItem.m; sourceTree = "<group>"; };
-		323FADDC2100AE940043BD86 /* TestCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCollectionViewItem.xib; sourceTree = "<group>"; };
 		32893E5A213EAAF7007FCEC7 /* SDTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestCase.h; sourceTree = "<group>"; };
 		32893E5B213EAAF7007FCEC7 /* SDTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestCase.m; sourceTree = "<group>"; };
 		32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotosPluginTests.m; sourceTree = "<group>"; };
@@ -161,11 +158,9 @@
 				323FADBC21008D9F0043BD86 /* AppDelegate.m */,
 				323FADBE21008D9F0043BD86 /* ViewController.h */,
 				323FADBF21008D9F0043BD86 /* ViewController.m */,
-				323FADD121009EDB0043BD86 /* TestCollectionView.h */,
-				323FADD221009EDB0043BD86 /* TestCollectionView.m */,
-				323FADD92100AE730043BD86 /* TestCollectionViewItem.h */,
-				323FADDA2100AE730043BD86 /* TestCollectionViewItem.m */,
-				323FADDC2100AE940043BD86 /* TestCollectionViewItem.xib */,
+				323ADD382253C1EA0083BC1C /* TestCollectionViewItem.h */,
+				323ADD392253C1EA0083BC1C /* TestCollectionViewItem.m */,
+				323ADD3A2253C1EA0083BC1C /* TestCollectionViewItem.xib */,
 				323FADD0210095550043BD86 /* PHCollection.h */,
 				323FADC121008DA00043BD86 /* Assets.xcassets */,
 				323FADC321008DA00043BD86 /* Main.storyboard */,
@@ -391,6 +386,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -412,7 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				323FADC221008DA00043BD86 /* Assets.xcassets in Resources */,
-				323FADDD2100AE940043BD86 /* TestCollectionViewItem.xib in Resources */,
+				323ADD3C2253C1EA0083BC1C /* TestCollectionViewItem.xib in Resources */,
 				323FADC521008DA00043BD86 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,10 +562,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				323FADC021008D9F0043BD86 /* ViewController.m in Sources */,
-				323FADD321009EDB0043BD86 /* TestCollectionView.m in Sources */,
+				323ADD3B2253C1EA0083BC1C /* TestCollectionViewItem.m in Sources */,
 				323FADC821008DA00043BD86 /* main.m in Sources */,
 				323FADBD21008D9F0043BD86 /* AppDelegate.m in Sources */,
-				323FADDB2100AE730043BD86 /* TestCollectionViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosPlugin.h>
-#import "TestCollectionView.h"
 #import "TestCollectionViewItem.h"
 #import "PHCollection.h" // Currently seems `PHAssetCollection` is not list in public header, but it works
 
@@ -17,8 +16,9 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
 @interface ViewController () <NSCollectionViewDelegate, NSCollectionViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray<NSURL *> *objects;
-@property (nonatomic, strong) TestCollectionView *collectionView;
-@property (nonatomic, strong) NSScrollView *scrollView;
+@property (weak) IBOutlet NSScrollView *scrollView;
+@property (weak) IBOutlet NSCollectionView *collectionView;
+
 
 @end
 
@@ -30,6 +30,9 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
     self.objects = [NSMutableArray array];
     // Setup Photos Loader
     SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
+    PHImageRequestOptions *options = [PHImageRequestOptions new];
+    options.sd_targetSize = CGSizeMake(500, 500); // The original image size may be 4K, we only query the max view size :)
+    SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
 
     // Photos Library Demo
     PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
@@ -42,14 +45,15 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
     PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
     for (PHAsset *asset in assets) {
         // You can use local identifier of `PHAsset` to create URL
-        //            NSURL *url = [NSURL sd_URLWithAssetLocalIdentifier:asset.localIdentifier];
+//        NSURL *url = [NSURL sd_URLWithAssetLocalIdentifier:asset.localIdentifier];
         // Or even `PHAsset` itself
         NSURL *url = [NSURL sd_URLWithAsset:asset];
         [self.objects addObject:url];
     }
     
-    [self.view addSubview:self.scrollView];
-    [self.collectionView reloadData];
+    [self.collectionView registerClass:[TestCollectionViewItem class] forItemWithIdentifier:TestCollectionViewItemIdentifier];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
 
@@ -62,6 +66,7 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     TestCollectionViewItem *cell = [collectionView makeItemWithIdentifier:TestCollectionViewItemIdentifier forIndexPath:indexPath];
     NSURL *photosURL = self.objects[indexPath.item];
+    cell.imageViewDisplay.sd_imageTransition = SDWebImageTransition.fadeTransition;
     [cell.imageViewDisplay sd_setImageWithURL:photosURL placeholderImage:nil options:SDWebImageFromLoaderOnly context:@{SDWebImageContextStoreCacheType: @(SDImageCacheTypeNone)}];
     return cell;
 }
@@ -72,32 +77,6 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
 
 - (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView {
     return 1;
-}
-
-- (TestCollectionView *)collectionView {
-    if (!_collectionView) {
-        _collectionView = [[TestCollectionView alloc] initWithFrame:self.view.bounds];
-        NSCollectionViewFlowLayout *layout = [[NSCollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = NSCollectionViewScrollDirectionVertical;
-        layout.itemSize = NSMakeSize(300, 300);
-        layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
-        _collectionView.collectionViewLayout = layout;
-        _collectionView.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
-        [_collectionView registerClass:[TestCollectionViewItem class] forItemWithIdentifier:TestCollectionViewItemIdentifier];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-    }
-    return _collectionView;
-}
-
-- (NSScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[NSScrollView alloc] initWithFrame:self.view.bounds];
-        _scrollView.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
-        _scrollView.documentView = self.collectionView;
-    }
-    return _scrollView;
 }
 
 @end

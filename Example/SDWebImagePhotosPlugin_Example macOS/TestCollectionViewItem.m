@@ -2,12 +2,20 @@
 //  TestCollectionViewItem.m
 //  SDWebImagePhotosPlugin_Example macOS
 //
-//  Created by lizhuoli on 2018/7/19.
-//  Copyright © 2018年 DreamPiggy. All rights reserved.
+//  Created by lizhuoli on 2019/4/3.
+//  Copyright © 2019 DreamPiggy. All rights reserved.
 //
 
 #import "TestCollectionViewItem.h"
 
+@interface TestCollectionViewItem ()
+
+@end
+
 @implementation TestCollectionViewItem
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
 
 @end

@@ -26,6 +26,8 @@
 	<string>Copyright © 2018年 DreamPiggy. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow SDWebImage Demo to show Photos Library images</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
