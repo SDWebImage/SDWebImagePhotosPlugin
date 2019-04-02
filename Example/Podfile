@@ -4,7 +4,6 @@ inhibit_all_warnings!
 target 'SDWebImagePhotosPlugin_Example' do
   platform :ios, '8.0'
   pod 'SDWebImagePhotosPlugin', :path => '../'
-  pod 'SDWebImage/Core', :git => 'https://github.com/rs/SDWebImage.git', :branch => '5.x'
 
   target 'SDWebImagePhotosPlugin_Tests' do
     inherit! :search_paths
@@ -16,5 +15,4 @@ end
 target 'SDWebImagePhotosPlugin_Example macOS' do
   platform :osx, '10.13'
   pod 'SDWebImagePhotosPlugin', :path => '../'
-  pod 'SDWebImage/Core', :git => 'https://github.com/rs/SDWebImage.git', :branch => '5.x'
 end
