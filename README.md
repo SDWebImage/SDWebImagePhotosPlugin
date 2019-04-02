@@ -35,8 +35,6 @@ pod 'SDWebImagePhotosPlugin'
 
 SDWebImagePhotosPlugin is available through [Carthage](https://github.com/Carthage/Carthage).
 
-Note that because the dependency SDWebImage currently is in beta. You should use `Carthage v0.30.1` or above to support beta [sem-version](https://semver.org/).
-
 ```
 github "SDWebImage/SDWebImagePhotosPlugin"
 ```
