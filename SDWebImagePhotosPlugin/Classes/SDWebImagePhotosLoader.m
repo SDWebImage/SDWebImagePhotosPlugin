@@ -101,11 +101,11 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 
 #pragma mark - SDImageLoader
 
-- (BOOL)canLoadWithURL:(NSURL *)url {
+- (BOOL)canRequestImageForURL:(NSURL *)url {
     return url.sd_isPhotosURL;
 }
 
-- (id<SDWebImageOperation>)loadImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (id<SDWebImageOperation>)requestImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     BOOL isPhotosURL = url.sd_isPhotosURL;
     if (!isPhotosURL) {
         if (completedBlock) {
@@ -149,8 +149,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         // Only support image
         if (!asset || asset.mediaType != PHAssetMediaTypeImage) {
             // Call error
-            // Mark as cancelled to avoid black list
-            NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];
+            NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorNotImageAsset userInfo:nil];
             if (completedBlock) {
                 completedBlock(nil, nil, error, YES);
             }
@@ -174,6 +173,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     [self.operationsTable addObject:operation];
     
     return operation;
+}
+
+- (BOOL)shouldBlockFailedURLWithURL:(NSURL *)url error:(NSError *)error {
+    if ([error.domain isEqualToString:SDWebImagePhotosErrorDomain]) {
+        return error.code == SDWebImagePhotosErrorInvalidURL
+        || error.code == SDWebImagePhotosErrorNotImageAsset;
+    }
+    return NO;
 }
 
 // This is used for normal image loading (With `requestImage:` API)
@@ -242,11 +249,6 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             });
         } else {
             NSError *error = info[PHImageErrorKey];
-            BOOL cancelled = [info[PHImageCancelledKey] boolValue];
-            if (cancelled) {
-                // Mark as cancelled to avoid black list
-                error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];
-            }
             dispatch_main_async_safe(^{
                 if (completedBlock) {
                     completedBlock(nil, nil, error, YES);

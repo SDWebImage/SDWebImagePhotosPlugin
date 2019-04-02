@@ -12,5 +12,6 @@ FOUNDATION_EXPORT NSErrorDomain const SDWebImagePhotosErrorDomain;
 
 typedef NS_ERROR_ENUM(SDWebImagePhotosErrorDomain, SDWebImagePhotosError) {
     SDWebImagePhotosErrorInvalidURL = 10000, // Photos URL is nil or not valid
-    SDWebImagePhotosErrorNotAuthorized = 10001 // Photos framework access is not authorized by user
+    SDWebImagePhotosErrorNotAuthorized = 10001, // Photos framework access is not authorized by user
+    SDWebImagePhotosErrorNotImageAsset = 10002 // Photos URL is not image asset type (like Video or Audio)
 };
