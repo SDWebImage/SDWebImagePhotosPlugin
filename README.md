@@ -156,6 +156,12 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 1. Since Photos Library image is already stored on the device disk. And query speed is fast enough for small resolution image. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage. And use `SDWebImageFromLoaderOnly` to disable cache query.
 2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (by default) to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
 
+## Warning
+
+The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
+
+By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosLoaderPixelSize`), which may consume much memory on iOS device.
+
 ## Demo
 
 If you have some issue about usage, SDWebImagePhotosPlugin provide a demo for iOS && macOS platform. To run the demo, clone the repo and run the following command.
