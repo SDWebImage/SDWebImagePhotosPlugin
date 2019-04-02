@@ -36,7 +36,7 @@ static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
         return nil;
     }
     
-    return [path substringFromIndex:1];
+    return [[path substringFromIndex:1] stringByRemovingPercentEncoding];
 }
 
 - (PHAsset *)sd_asset {
@@ -52,9 +52,11 @@ static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
         return nil;
     }
     // photos://asset/123
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", SDWebImagePhotosScheme, SDWebImagePhotosURLHostAsset, identifier];
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:[NSString stringWithFormat:@"%@://%@/", SDWebImagePhotosScheme, SDWebImagePhotosURLHostAsset]];
+    NSString *encodedPath = [identifier stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    components.path = [components.path stringByAppendingString:encodedPath];
     
-    return [NSURL URLWithString:urlString];
+    return components.URL;
 }
 
 + (instancetype)sd_URLWithAsset:(PHAsset *)asset {
