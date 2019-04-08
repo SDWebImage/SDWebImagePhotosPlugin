@@ -43,7 +43,7 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPhotos
 
 /**
  A Bool value specify whether or not, to use `requestImageDataForAsset:options:resultHandler:` instead of `requestImageForAsset:targetSize:contentMode:options:resultHandler:` API to request Asset's Image.
- By default, we only use `requestImageDataForAsset` for Animated Asset (GIF images), use `requestImageForAsset` for other Asset.
+ By default, we automatically use `requestImageDataForAsset` for Animated Asset (GIF images), use `requestImageForAsset` for other Asset. If you provide a custom value, always using that value instead.
  If you care about the raw image data, you can enable this context option to get the raw image data in completion block.
  @note When query the raw image data, the `targetSize` and `contentMode` are ignored. You can use image transformer or other ways from your propose. See Apple's documentation for more details information. (NSNumber *)
  */
