@@ -97,6 +97,8 @@
                                   context:@{SDWebImageContextCustomManager : manager}
                                  progress:nil
                                 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                    // Strong retain imageView to avoid immediatelly dealloc
+                                    expect(imageView.image).equal(image);
                                     // Expect animated image
                                     expect(image.sd_isAnimated).to.beTruthy();
                                     [expectation fulfill];
@@ -104,7 +106,7 @@
         });
     }];
     
-    [self waitForExpectationsWithTimeout:kAsyncTestTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:kAsyncTestTimeout * 2 handler:nil];
 }
 
 #pragma mark - Util

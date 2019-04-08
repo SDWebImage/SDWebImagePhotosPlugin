@@ -15,3 +15,4 @@ const int64_t SDWebImagePhotosProgressExpectedSize = 100LL;
 
 SDWebImageContextOption _Nonnull const SDWebImageContextPhotosFetchOptions = @"photosFetchOptions";
 SDWebImageContextOption _Nonnull const SDWebImageContextPhotosImageRequestOptions = @"photosImageRequestOptions";
+SDWebImageContextOption _Nonnull const SDWebImageContextPhotosRequestImageData = @"photosRequestImageData";
