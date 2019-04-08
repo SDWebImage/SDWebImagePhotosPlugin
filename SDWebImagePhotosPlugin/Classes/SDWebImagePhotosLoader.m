@@ -156,6 +156,12 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             return;
         }
         
+        // Request image data instead of image
+        BOOL requestImageData = NO;
+        if (context[SDWebImageContextPhotosRequestImageData]) {
+            requestImageData = [context[SDWebImageContextPhotosRequestImageData] boolValue];
+        }
+        
         // Check UTType
         NSString *uniformTypeIdentifier;
         if ([asset respondsToSelector:@selector(uniformTypeIdentifier)]) {
@@ -163,7 +169,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         }
         
         // Check Animated Image, which need the original image data
-        if ([[self class] isAnimatedImageWithUTType:uniformTypeIdentifier]) {
+        if (requestImageData || [[self class] isAnimatedImageWithUTType:uniformTypeIdentifier]) {
             // Animated image need load raw image data
             [self fetchImageDataWithAsset:asset operation:operation url:url options:options context:context progress:progressBlock completed:completedBlock];
         } else {

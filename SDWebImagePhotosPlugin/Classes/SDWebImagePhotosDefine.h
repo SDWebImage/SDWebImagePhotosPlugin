@@ -40,3 +40,11 @@ FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPhotos
  A PHImageRequestOptions instance used in the Photos Library image request process. If you do not provide, we will use the default options to fetch the image (PHImageRequestOptions)
  */
 FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPhotosImageRequestOptions;
+
+/**
+ A Bool value specify whether or not, to use `requestImageDataForAsset:options:resultHandler:` instead of `requestImageForAsset:targetSize:contentMode:options:resultHandler:` API to request Asset's Image.
+ By default, we only use `requestImageDataForAsset` for Animated Asset (GIF images), use `requestImageForAsset` for other Asset.
+ If you care about the raw image data, you can enable this context option to get the raw image data in completion block.
+ @note When query the raw image data, the `targetSize` and `contentMode` is always ignored. You can use image transformer or other ways from your propose. See Apple's documentation for more details information. (NSNumber *)
+ */
+FOUNDATION_EXPORT SDWebImageContextOption _Nonnull const SDWebImageContextPhotosRequestImageData;
