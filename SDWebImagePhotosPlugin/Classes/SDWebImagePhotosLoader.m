@@ -7,6 +7,7 @@
  */
 
 #import "SDWebImagePhotosLoader.h"
+#import "SDWebImagePhotosDefine.h"
 #import "NSURL+SDWebImagePhotosPlugin.h"
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
 #import "SDWebImagePhotosError.h"
