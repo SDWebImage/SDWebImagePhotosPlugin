@@ -4,8 +4,8 @@
 [![Version](https://img.shields.io/cocoapods/v/SDWebImagePhotosPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePhotosPlugin)
 [![License](https://img.shields.io/cocoapods/l/SDWebImagePhotosPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePhotosPlugin)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImagePhotosPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImagePhotosPlugin)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImagePhotosPlugin)
-[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat)](https://github.com/SDWebImage/SDWebImagePhotosPlugin)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 [![codecov](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin)
 
 ## What's for
@@ -19,7 +19,7 @@ By using this plugin, it allows you to use your familiar View Category method fr
 + iOS 8+
 + macOS 10.13+
 + tvOS 10+
-+ Xcode 9+
++ Xcode 10+
 
 ## Installation
 
@@ -40,7 +40,7 @@ SDWebImagePhotosPlugin is available through [Carthage](https://github.com/Cartha
 github "SDWebImage/SDWebImagePhotosPlugin"
 ```
 
-#### Swift Package Manager
+#### Swift Package Manager (Xcode 11+)
 
 SDWebImagePhotosPlugin is available through [Swift Package Manager](https://swift.org/package-manager).
 
