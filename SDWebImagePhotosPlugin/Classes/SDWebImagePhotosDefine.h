@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import <SDWebImage/SDWebImageDefine.h>
+@import SDWebImage;
 
 /**
  * The scheme when identifing the URL is Photos URL

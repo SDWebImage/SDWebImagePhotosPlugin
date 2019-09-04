@@ -7,16 +7,25 @@
  */
 
 #import "SDWebImagePhotosLoader.h"
+#import "SDWebImagePhotosDefine.h"
 #import "NSURL+SDWebImagePhotosPlugin.h"
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
 #import "SDWebImagePhotosError.h"
 #import <objc/runtime.h>
+
+// Compatible
 #if SD_UIKIT
 #import <MobileCoreServices/MobileCoreServices.h>
 typedef UIImageOrientation SDImageOrientation;
 #else
 typedef CGImagePropertyOrientation SDImageOrientation;
 #endif
+// This protocol is used to fix the Xcode 11's API declaration for macOS. Which should be available on macOS 10.13
+@protocol PHImageManager <NSObject>
+- (PHImageRequestID)requestImageDataForAsset:(PHAsset *)asset options:(nullable PHImageRequestOptions *)options resultHandler:(void(^)(NSData *__nullable imageData, NSString *__nullable dataUTI, SDImageOrientation orientation, NSDictionary *__nullable info))resultHandler;
+@end
+@interface PHImageManager () <PHImageManager>
+@end
 
 @interface SDWebImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
 
@@ -286,7 +295,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     }
     
     __weak typeof(operation) weakOperation = operation;
-    PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageDataForAsset:asset options:requestOptions resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, SDImageOrientation orientation, NSDictionary * _Nullable info) {
+    PHImageRequestID requestID = [(id<PHImageManager>)[PHImageManager defaultManager] requestImageDataForAsset:asset options:requestOptions resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, SDImageOrientation orientation, NSDictionary * _Nullable info) {
         if (weakOperation.isCancelled) {
             // Cancelled
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];

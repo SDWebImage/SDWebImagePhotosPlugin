@@ -6,9 +6,8 @@
  * file that was distributed with this source code.
  */
 
-#import <SDWebImage/SDWebImage.h>
-#import <Photos/Photos.h>
-#import "SDWebImagePhotosDefine.h"
+@import SDWebImage;
+@import Photos;
 
 // The imgae loader to load image asset from Photos library. You need to register the loader into manager firstly. Use `@import SDWebImagePhotosPlugin` to import full framework instead of each header.
 // @note To control single image request options, use the context option in `SDWebImagePhotosDefine.h`.
