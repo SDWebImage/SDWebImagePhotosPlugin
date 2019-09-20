@@ -1,7 +1,7 @@
 PODS:
   - Expecta (1.0.6)
   - SDWebImage/Core (5.1.0)
-  - SDWebImagePhotosPlugin (0.3.0):
+  - SDWebImagePhotosPlugin (0.4.0):
     - SDWebImage/Core (~> 5.0)
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
-  SDWebImagePhotosPlugin: 99daf9f3706d65e887e3b802ad8121ebaba0f782
+  SDWebImagePhotosPlugin: 7577bd9f01f16c2f3b35fd81109b0612c739c81a
 
 PODFILE CHECKSUM: 60756e45d1da564a14e0e1964ffd639deadc2855
 
