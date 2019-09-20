@@ -37,4 +37,11 @@
  */
 @property (nonatomic, strong, nullable) PHImageRequestOptions *imageRequestOptions;
 
+/**
+ Whether we request only `PHAssetMediaTypeImage` asset and ignore other types (video/audio/unknown).
+ When we found other type, an error `SDWebImagePhotosErrorNotImageAsset` will be reported.
+ Defaults to YES. If you prefer to load other type like video asset's poster image, set this value to NO.
+ */
+@property (nonatomic, assign) BOOL requestImageAssetOnly;
+
 @end

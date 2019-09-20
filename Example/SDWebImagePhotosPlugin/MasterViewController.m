@@ -59,6 +59,8 @@
         PHImageRequestOptions *options = [PHImageRequestOptions new];
         options.sd_targetSize = CGSizeMake(500, 500); // The original image size may be 4K, we only query the max view size :)
         SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
+        // Request Video Asset Poster as well
+        SDWebImagePhotosLoader.sharedLoader.requestImageAssetOnly = NO;
         
         // Photos Library Demo
         [self fetchAssets];
@@ -73,7 +75,6 @@
                                                                                           options:nil];
     PHAssetCollection *collection = result.firstObject;
     PHFetchOptions *fetchOptions = [PHFetchOptions new];
-    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
     fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
     for (PHAsset *asset in assets) {

@@ -77,6 +77,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         requestOptions.version = PHImageRequestOptionsVersionCurrent;
         self.imageRequestOptions = requestOptions;
         self.operationsTable = [NSHashTable weakObjectsHashTable];
+        self.requestImageAssetOnly = YES;
         self.fetchQueue = dispatch_queue_create("SDWebImagePhotosLoader", DISPATCH_QUEUE_SERIAL);
 #if SD_UIKIT
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
@@ -155,8 +156,8 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             PHFetchResult<PHAsset *> *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:fetchOptions];
             asset = fetchResult.firstObject;
         }
-        // Only support image
-        if (!asset || asset.mediaType != PHAssetMediaTypeImage) {
+        // Check whether we should request only image asset
+        if (!asset || (self.requestImageAssetOnly && asset.mediaType != PHAssetMediaTypeImage)) {
             // Call error
             NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorNotImageAsset userInfo:nil];
             if (completedBlock) {
