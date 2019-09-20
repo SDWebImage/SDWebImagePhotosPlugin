@@ -129,6 +129,24 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context: [.customM
 #### Animated Images
 SDWebImagePhotosPlugin supports GIF images stored in Photos Library as well. Just use the same API as normal images to query the asset. We will query the image data and decode the animated images (compatible with `UIImageView` as well as [SDAnimatedImageView](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50))
 
+
+#### Video Asset
+SDWebImagePhotosPlugin supports to load Video Asset poster as well. By default we don't allow non-image type asset, to avoid the accidentally pick of wrong Asset. But you can disable this limit as well.
+
++ Objective-C
+
+```objectivec
+SDWebImagePhotosLoader.sharedLoader.requestImageAssetOnly = NO;
+``` 
+
++ Swift
+
+```swift
+SDWebImagePhotosLoader.shared.requestImageAssetOnly = false
+```
+
+Then just request the PHAssets or using the fetch options, which the media type is `.video`.
+
 #### Fetch/Request Options
 To specify options like `PHFetchOptions` or `PHImageRequestOptions` for Photos Library. Either to change the correspond properties in loader, or provide a context options for each image request.
 
