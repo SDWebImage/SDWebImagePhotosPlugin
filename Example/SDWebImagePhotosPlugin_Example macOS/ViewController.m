@@ -11,8 +11,6 @@
 #import "TestCollectionViewItem.h"
 #import "PHCollection.h" // Currently seems `PHAssetCollection` is not list in public header, but it works
 
-static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewItemIdentifier";
-
 @interface ViewController () <NSCollectionViewDelegate, NSCollectionViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray<NSURL *> *objects;
@@ -24,19 +22,33 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
 
 @implementation ViewController
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.objects = [NSMutableArray array];
+        // Setup Photos Loader
+        SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
+        PHImageRequestOptions *options = [PHImageRequestOptions new];
+        options.sd_targetSize = CGSizeMake(500, 500); // The original image size may be 4K, we only query the max view size :)
+        SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
+        
+        // Reload
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuItemDidTap:) name:NSMenuDidSendActionNotification object:nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.objects = [NSMutableArray array];
-    // Setup Photos Loader
-    SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
-    PHImageRequestOptions *options = [PHImageRequestOptions new];
-    options.sd_targetSize = CGSizeMake(500, 500); // The original image size may be 4K, we only query the max view size :)
-    SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
-
     // Photos Library Demo
-    PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
-                                                                                          subtype:PHAssetCollectionSubtypeAlbumImported
+    [self reloadData];
+}
+
+- (void)fetchAssets {
+    [self.objects removeAllObjects];
+    PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                                          subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
                                                                                           options:nil];
     PHAssetCollection *collection = result.firstObject;
     PHFetchOptions *fetchOptions = [PHFetchOptions new];
@@ -50,21 +62,22 @@ static NSString * const TestCollectionViewItemIdentifier = @"TestCollectionViewI
         NSURL *url = [NSURL sd_URLWithAsset:asset];
         [self.objects addObject:url];
     }
-    
-    [self.collectionView registerClass:[TestCollectionViewItem class] forItemWithIdentifier:TestCollectionViewItemIdentifier];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
 }
 
+- (void)menuItemDidTap:(NSNotification *)notification {
+    NSMenuItem *menuItem = notification.userInfo[@"MenuItem"];
+    if ([menuItem.title isEqualToString:@"Reload"]) {
+        [self reloadData];
+    }
+}
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
+- (void)reloadData {
+    [self fetchAssets];
+    [self.collectionView reloadData];
 }
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
-    TestCollectionViewItem *cell = [collectionView makeItemWithIdentifier:TestCollectionViewItemIdentifier forIndexPath:indexPath];
+    TestCollectionViewItem *cell = [collectionView makeItemWithIdentifier:@"TestCollectionViewItem" forIndexPath:indexPath];
     NSURL *photosURL = self.objects[indexPath.item];
     cell.imageViewDisplay.sd_imageTransition = SDWebImageTransition.fadeTransition;
     [cell.imageViewDisplay sd_setImageWithURL:photosURL placeholderImage:nil options:SDWebImageFromLoaderOnly context:@{SDWebImageContextStoreCacheType: @(SDImageCacheTypeNone)}];

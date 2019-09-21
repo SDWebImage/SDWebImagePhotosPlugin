@@ -23,5 +23,8 @@
     // Insert code here to tear down your application
 }
 
+- (IBAction)reloadButtonDidTap:(NSMenuItem *)sender {
+    // Menu item target-action
+}
 
 @end

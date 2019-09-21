@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,6 +24,11 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Reload" keyEquivalent="r" id="D7H-QO-i7O">
+                                            <connections>
+                                                <action selector="reloadButtonDidTap:" target="Voe-Tx-rLC" id="IlR-kM-f1C"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -719,11 +724,15 @@
                                         <collectionView id="Oe5-c8-Che">
                                             <rect key="frame" x="0.0" y="0.0" width="478" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewGridLayout key="collectionViewLayout" maximumNumberOfRows="5" maximumNumberOfColumns="5" id="dpc-Ya-fwT">
+                                            <collectionViewGridLayout key="collectionViewLayout" id="dpc-Ya-fwT">
                                                 <size key="minimumItemSize" width="300" height="300"/>
                                                 <size key="maximumItemSize" width="500" height="500"/>
                                             </collectionViewGridLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="hdW-D8-ACZ"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="TAv-Dm-nUp"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                 </clipView>

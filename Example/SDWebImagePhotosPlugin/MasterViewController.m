@@ -61,11 +61,15 @@
         SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
         // Request Video Asset Poster as well
         SDWebImagePhotosLoader.sharedLoader.requestImageAssetOnly = NO;
-        
-        // Photos Library Demo
-        [self fetchAssets];
     }
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Photos Library Demo
+    [self reloadData];
 }
 
 - (void)fetchAssets {
