@@ -8,7 +8,7 @@
 
 #import "SDWebImagePhotosDefine.h"
 
-NSString * _Nonnull const SDWebImagePhotosScheme = @"photos";
+NSString * _Nonnull const SDWebImagePhotosScheme = @"ph";
 const CGSize SDWebImagePhotosLoaderPixelSize = {.width = 0, .height = 0};
 const CGSize SDWebImagePhotosLoaderPointSize = {.width = -1, .height = -1};
 const int64_t SDWebImagePhotosProgressExpectedSize = 100LL;
