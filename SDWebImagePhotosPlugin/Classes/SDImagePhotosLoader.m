@@ -211,9 +211,9 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         requestOptions = self.imageRequestOptions;
     }
     CGSize targetSize = requestOptions.sd_targetSize;
-    if (CGSizeEqualToSize(targetSize, SDWebImagePhotosLoaderPixelSize)) {
+    if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPixelSize)) {
         targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-    } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosLoaderPointSize)) {
+    } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPointSize)) {
         CGFloat scale = 1;
         NSNumber *scaleValue = [context valueForKey:SDWebImageContextImageScaleFactor];
         if (scaleValue) {
