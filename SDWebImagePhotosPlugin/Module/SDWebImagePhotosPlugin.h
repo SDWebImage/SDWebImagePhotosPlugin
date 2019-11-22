@@ -16,7 +16,7 @@
 #import <SDWebImagePhotosPlugin/PHImageRequestOptions+SDWebImagePhotosPlugin.h>
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosDefine.h>
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosError.h>
-#import <SDWebImagePhotosPlugin/SDWebImagePhotosLoader.h>
+#import <SDWebImagePhotosPlugin/SDImagePhotosLoader.h>
 
 FOUNDATION_EXPORT double SDWebImagePhotosPluginVersionNumber;
 FOUNDATION_EXPORT const unsigned char SDWebImagePhotosPluginVersionString[];

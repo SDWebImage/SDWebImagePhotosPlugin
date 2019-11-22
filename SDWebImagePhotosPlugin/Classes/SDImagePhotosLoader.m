@@ -27,14 +27,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 @interface PHImageManager () <PHImageManager>
 @end
 
-@interface SDWebImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
+@interface SDImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
 
 @property (nonatomic, assign) PHImageRequestID requestID;
 @property (nonatomic, getter=isCancelled) BOOL cancelled;
 
 @end
 
-@implementation SDWebImagePhotosLoaderOperation
+@implementation SDImagePhotosLoaderOperation
 
 - (void)cancel {
     [[PHImageManager defaultManager] cancelImageRequest:self.requestID];
@@ -45,7 +45,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 
 @interface SDImagePhotosLoader ()
 
-@property (nonatomic, strong, nonnull) NSHashTable<SDWebImagePhotosLoaderOperation *> *operationsTable;
+@property (nonatomic, strong, nonnull) NSHashTable<SDImagePhotosLoaderOperation *> *operationsTable;
 @property (nonatomic, strong, nonnull) dispatch_queue_t fetchQueue;
 
 @end
@@ -78,7 +78,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         self.imageRequestOptions = requestOptions;
         self.operationsTable = [NSHashTable weakObjectsHashTable];
         self.requestImageAssetOnly = YES;
-        self.fetchQueue = dispatch_queue_create("SDWebImagePhotosLoader", DISPATCH_QUEUE_SERIAL);
+        self.fetchQueue = dispatch_queue_create("SDImagePhotosLoader", DISPATCH_QUEUE_SERIAL);
 #if SD_UIKIT
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 #endif
@@ -87,7 +87,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 - (void)didReceiveMemoryWarning:(NSNotification *)notification {
-    for (SDWebImagePhotosLoaderOperation *operation in self.operationsTable) {
+    for (SDImagePhotosLoaderOperation *operation in self.operationsTable) {
         [operation cancel];
     }
     [self.operationsTable removeAllObjects];
@@ -140,7 +140,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     }
     
     // Begin fetch asset in fetcher queue because this block main queue
-    SDWebImagePhotosLoaderOperation *operation = [[SDWebImagePhotosLoaderOperation alloc] init];
+    SDImagePhotosLoaderOperation *operation = [[SDImagePhotosLoaderOperation alloc] init];
     dispatch_async(self.fetchQueue, ^{
         if (operation.isCancelled) {
             // Cancelled
@@ -203,7 +203,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 // This is used for normal image loading (With `requestImage:` API)
-- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
@@ -280,7 +280,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 // This is used for animated image loading (With `requestImageData:` API)
-- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
