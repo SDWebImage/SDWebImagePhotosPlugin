@@ -9,7 +9,7 @@ DEPENDENCIES:
   - SDWebImagePhotosPlugin (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Expecta
     - SDWebImage
 
@@ -24,4 +24,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 60756e45d1da564a14e0e1964ffd639deadc2855
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

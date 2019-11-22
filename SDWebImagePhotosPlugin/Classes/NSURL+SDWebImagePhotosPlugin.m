@@ -11,8 +11,6 @@
 #import <Photos/Photos.h>
 #import <objc/runtime.h>
 
-static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
-
 @implementation NSURL (SDWebImagePhotosPlugin)
 
 - (BOOL)sd_isPhotosURL {
@@ -27,16 +25,12 @@ static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
     if (asset) {
         return asset.localIdentifier;
     }
-    NSString *host = self.host;
-    if (![SDWebImagePhotosURLHostAsset isEqualToString:host]) {
+    NSString *urlString = self.absoluteString;
+    NSString *prefix = [NSString stringWithFormat:@"%@://", SDWebImagePhotosScheme];
+    if (urlString.length <= prefix.length) {
         return nil;
     }
-    NSString *path = self.path;
-    if (path.length <= 1) {
-        return nil;
-    }
-    
-    return [[path substringFromIndex:1] stringByRemovingPercentEncoding];
+    return [urlString stringByReplacingOccurrencesOfString:prefix withString:@""];
 }
 
 - (PHAsset *)sd_asset {
@@ -51,12 +45,9 @@ static NSString * _Nonnull const SDWebImagePhotosURLHostAsset = @"asset";
     if (!identifier) {
         return nil;
     }
-    // photos://asset/123
-    NSURLComponents *components = [[NSURLComponents alloc] initWithString:[NSString stringWithFormat:@"%@://%@/", SDWebImagePhotosScheme, SDWebImagePhotosURLHostAsset]];
-    NSString *encodedPath = [identifier stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
-    components.path = [components.path stringByAppendingString:encodedPath];
-    
-    return components.URL;
+    // ph://F2A9F582-BA45-4308-924E-6D146B784A09/L0/001
+    NSString *prefix = [NSString stringWithFormat:@"%@://", SDWebImagePhotosScheme];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", prefix, identifier]];
 }
 
 + (instancetype)sd_URLWithAsset:(PHAsset *)asset {
