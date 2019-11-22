@@ -119,7 +119,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     BOOL isPhotosURL = url.sd_isPhotosURL;
     if (!isPhotosURL) {
         if (completedBlock) {
-            NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Photos URL is nil"}];
+            NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Photos URL is nil"}];
             completedBlock(nil, nil, error, YES);
         }
         return nil;
@@ -192,11 +192,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 - (BOOL)shouldBlockFailedURLWithURL:(NSURL *)url error:(NSError *)error {
-    if ([error.domain isEqualToString:SDWebImagePhotosErrorDomain]) {
-        return error.code == SDWebImagePhotosErrorInvalidURL
-        || error.code == SDWebImagePhotosErrorNotImageAsset;
+    BOOL shouldBlockFailedURL = NO;
+    if ([error.domain isEqualToString:SDWebImageErrorDomain]) {
+        shouldBlockFailedURL = error.code == SDWebImageErrorInvalidURL
+        || error.code == SDWebImageErrorBadImageData;
+    } else if ([error.domain isEqualToString:SDWebImagePhotosErrorDomain]) {
+        shouldBlockFailedURL = error.code == SDWebImagePhotosErrorNotImageAsset;
     }
-    return NO;
+    return shouldBlockFailedURL;
 }
 
 // This is used for normal image loading (With `requestImage:` API)
