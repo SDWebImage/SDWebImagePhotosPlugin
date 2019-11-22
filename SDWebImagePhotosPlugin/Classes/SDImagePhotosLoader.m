@@ -317,9 +317,13 @@ typedef CGImagePropertyOrientation SDImageOrientation;
                     return;
                 }
                 UIImage *image = SDImageLoaderDecodeImageData(imageData, url, options, context);
+                NSError *error;
+                if (!image) {
+                    error = [NSError errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorBadImageData userInfo:nil];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (completedBlock) {
-                        completedBlock(image, imageData, nil, YES);
+                        completedBlock(image, imageData, error, YES);
                     }
                 });
             });
