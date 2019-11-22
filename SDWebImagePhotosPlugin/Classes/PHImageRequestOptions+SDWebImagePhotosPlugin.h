@@ -8,7 +8,7 @@
 
 #import <Photos/Photos.h>
 
-// PHImageRequestOptions category to provide targetSize and contentMode when fetch Photos image asset
+/// PHImageRequestOptions category to provide targetSize and contentMode when fetch Photos image asset
 @interface PHImageRequestOptions (SDWebImagePhotosPlugin)
 
 /**

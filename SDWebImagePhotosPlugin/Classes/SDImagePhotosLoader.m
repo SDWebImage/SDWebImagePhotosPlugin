@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImagePhotosLoader.h"
+#import "SDImagePhotosLoader.h"
 #import "SDWebImagePhotosDefine.h"
 #import "NSURL+SDWebImagePhotosPlugin.h"
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
@@ -43,14 +43,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 
 @end
 
-@interface SDWebImagePhotosLoader ()
+@interface SDImagePhotosLoader ()
 
 @property (nonatomic, strong, nonnull) NSHashTable<SDWebImagePhotosLoaderOperation *> *operationsTable;
 @property (nonatomic, strong, nonnull) dispatch_queue_t fetchQueue;
 
 @end
 
-@implementation SDWebImagePhotosLoader
+@implementation SDImagePhotosLoader
 
 - (void)dealloc {
 #if SD_UIKIT
@@ -58,11 +58,11 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 #endif
 }
 
-+ (SDWebImagePhotosLoader *)sharedLoader {
++ (SDImagePhotosLoader *)sharedLoader {
     static dispatch_once_t onceToken;
-    static SDWebImagePhotosLoader *loader;
+    static SDImagePhotosLoader *loader;
     dispatch_once(&onceToken, ^{
-        loader = [[SDWebImagePhotosLoader alloc] init];
+        loader = [[SDImagePhotosLoader alloc] init];
     });
     return loader;
 }

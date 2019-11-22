@@ -13,9 +13,9 @@
 		32CCEA13213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA14213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA15213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32CCEA25213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDWebImagePhotosLoader.m */; };
-		32CCEA26213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDWebImagePhotosLoader.m */; };
-		32CCEA27213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDWebImagePhotosLoader.m */; };
+		32CCEA25213E38F600214381 /* SDImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */; };
+		32CCEA26213E38F600214381 /* SDImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */; };
+		32CCEA27213E38F600214381 /* SDImagePhotosLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */; };
 		32CCEA28213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1C213E38F600214381 /* SDWebImagePhotosDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA29213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1C213E38F600214381 /* SDWebImagePhotosDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA2A213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1C213E38F600214381 /* SDWebImagePhotosDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,9 +28,9 @@
 		32CCEA31213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1F213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA32213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1F213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA33213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA1F213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32CCEA34213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDWebImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32CCEA35213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDWebImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32CCEA36213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDWebImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CCEA34213E38F600214381 /* SDImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CCEA35213E38F600214381 /* SDImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CCEA36213E38F600214381 /* SDImagePhotosLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA37213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA21213E38F600214381 /* SDWebImagePhotosDefine.m */; };
 		32CCEA38213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA21213E38F600214381 /* SDWebImagePhotosDefine.m */; };
 		32CCEA39213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CCEA21213E38F600214381 /* SDWebImagePhotosDefine.m */; };
@@ -57,12 +57,12 @@
 		32CCEA05213E385A00214381 /* SDWebImagePhotosPlugin_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePhotosPlugin_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImagePhotosPlugin.h; path = Module/SDWebImagePhotosPlugin.h; sourceTree = "<group>"; };
 		32CCEA16213E38D000214381 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
-		32CCEA1B213E38F600214381 /* SDWebImagePhotosLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePhotosLoader.m; sourceTree = "<group>"; };
+		32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImagePhotosLoader.m; sourceTree = "<group>"; };
 		32CCEA1C213E38F600214381 /* SDWebImagePhotosDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePhotosDefine.h; sourceTree = "<group>"; };
 		32CCEA1D213E38F600214381 /* SDWebImagePhotosError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePhotosError.m; sourceTree = "<group>"; };
 		32CCEA1E213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SDWebImagePhotosPlugin.m"; sourceTree = "<group>"; };
 		32CCEA1F213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHImageRequestOptions+SDWebImagePhotosPlugin.h"; sourceTree = "<group>"; };
-		32CCEA20213E38F600214381 /* SDWebImagePhotosLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePhotosLoader.h; sourceTree = "<group>"; };
+		32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImagePhotosLoader.h; sourceTree = "<group>"; };
 		32CCEA21213E38F600214381 /* SDWebImagePhotosDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePhotosDefine.m; sourceTree = "<group>"; };
 		32CCEA22213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHImageRequestOptions+SDWebImagePhotosPlugin.m"; sourceTree = "<group>"; };
 		32CCEA23213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SDWebImagePhotosPlugin.h"; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 				32CCEA21213E38F600214381 /* SDWebImagePhotosDefine.m */,
 				32CCEA24213E38F600214381 /* SDWebImagePhotosError.h */,
 				32CCEA1D213E38F600214381 /* SDWebImagePhotosError.m */,
-				32CCEA20213E38F600214381 /* SDWebImagePhotosLoader.h */,
-				32CCEA1B213E38F600214381 /* SDWebImagePhotosLoader.m */,
+				32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */,
+				32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 				32CCEA28213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
 				32CCEA31213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA40213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
-				32CCEA34213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */,
+				32CCEA34213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
 				32CCEA13213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA3D213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.h in Headers */,
 			);
@@ -185,7 +185,7 @@
 				32CCEA29213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
 				32CCEA32213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA41213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
-				32CCEA35213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */,
+				32CCEA35213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
 				32CCEA14213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA3E213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.h in Headers */,
 			);
@@ -198,7 +198,7 @@
 				32CCEA2A213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
 				32CCEA33213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA42213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
-				32CCEA36213E38F600214381 /* SDWebImagePhotosLoader.h in Headers */,
+				32CCEA36213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
 				32CCEA15213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA3F213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.h in Headers */,
 			);
@@ -329,7 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32CCEA25213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */,
+				32CCEA25213E38F600214381 /* SDImagePhotosLoader.m in Sources */,
 				32CCEA3A213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2B213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA2E213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,
@@ -341,7 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32CCEA26213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */,
+				32CCEA26213E38F600214381 /* SDImagePhotosLoader.m in Sources */,
 				32CCEA3B213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2C213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA2F213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,
@@ -353,7 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32CCEA27213E38F600214381 /* SDWebImagePhotosLoader.m in Sources */,
+				32CCEA27213E38F600214381 /* SDImagePhotosLoader.m in Sources */,
 				32CCEA3C213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2D213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA30213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,

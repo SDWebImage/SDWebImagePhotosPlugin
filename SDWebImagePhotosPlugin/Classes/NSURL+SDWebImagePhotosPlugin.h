@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class PHAsset;
-// NSURL category for Photos URL support
+/// NSURL category for Photos URL support
 @interface NSURL (SDWebImagePhotosPlugin)
 
 /**
