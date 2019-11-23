@@ -130,6 +130,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorNotAuthorized userInfo:@{NSLocalizedDescriptionKey : @"Photos library access not authorized"}];
             completedBlock(nil, nil, error, YES);
         }
+        return nil;
     }
     
     PHFetchOptions *fetchOptions;
