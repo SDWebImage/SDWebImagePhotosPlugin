@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImagePhotosLoader.h"
+#import "SDImagePhotosLoader.h"
 #import "SDWebImagePhotosDefine.h"
 #import "NSURL+SDWebImagePhotosPlugin.h"
 #import "PHImageRequestOptions+SDWebImagePhotosPlugin.h"
@@ -27,14 +27,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 @interface PHImageManager () <PHImageManager>
 @end
 
-@interface SDWebImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
+@interface SDImagePhotosLoaderOperation : NSObject <SDWebImageOperation>
 
 @property (nonatomic, assign) PHImageRequestID requestID;
 @property (nonatomic, getter=isCancelled) BOOL cancelled;
 
 @end
 
-@implementation SDWebImagePhotosLoaderOperation
+@implementation SDImagePhotosLoaderOperation
 
 - (void)cancel {
     [[PHImageManager defaultManager] cancelImageRequest:self.requestID];
@@ -43,14 +43,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 
 @end
 
-@interface SDWebImagePhotosLoader ()
+@interface SDImagePhotosLoader ()
 
-@property (nonatomic, strong, nonnull) NSHashTable<SDWebImagePhotosLoaderOperation *> *operationsTable;
+@property (nonatomic, strong, nonnull) NSHashTable<SDImagePhotosLoaderOperation *> *operationsTable;
 @property (nonatomic, strong, nonnull) dispatch_queue_t fetchQueue;
 
 @end
 
-@implementation SDWebImagePhotosLoader
+@implementation SDImagePhotosLoader
 
 - (void)dealloc {
 #if SD_UIKIT
@@ -58,11 +58,11 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 #endif
 }
 
-+ (SDWebImagePhotosLoader *)sharedLoader {
++ (SDImagePhotosLoader *)sharedLoader {
     static dispatch_once_t onceToken;
-    static SDWebImagePhotosLoader *loader;
+    static SDImagePhotosLoader *loader;
     dispatch_once(&onceToken, ^{
-        loader = [[SDWebImagePhotosLoader alloc] init];
+        loader = [[SDImagePhotosLoader alloc] init];
     });
     return loader;
 }
@@ -78,7 +78,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         self.imageRequestOptions = requestOptions;
         self.operationsTable = [NSHashTable weakObjectsHashTable];
         self.requestImageAssetOnly = YES;
-        self.fetchQueue = dispatch_queue_create("SDWebImagePhotosLoader", DISPATCH_QUEUE_SERIAL);
+        self.fetchQueue = dispatch_queue_create("SDImagePhotosLoader", DISPATCH_QUEUE_SERIAL);
 #if SD_UIKIT
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 #endif
@@ -87,7 +87,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 - (void)didReceiveMemoryWarning:(NSNotification *)notification {
-    for (SDWebImagePhotosLoaderOperation *operation in self.operationsTable) {
+    for (SDImagePhotosLoaderOperation *operation in self.operationsTable) {
         [operation cancel];
     }
     [self.operationsTable removeAllObjects];
@@ -119,7 +119,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     BOOL isPhotosURL = url.sd_isPhotosURL;
     if (!isPhotosURL) {
         if (completedBlock) {
-            NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Photos URL is nil"}];
+            NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Photos URL is nil"}];
             completedBlock(nil, nil, error, YES);
         }
         return nil;
@@ -140,7 +140,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     }
     
     // Begin fetch asset in fetcher queue because this block main queue
-    SDWebImagePhotosLoaderOperation *operation = [[SDWebImagePhotosLoaderOperation alloc] init];
+    SDImagePhotosLoaderOperation *operation = [[SDImagePhotosLoaderOperation alloc] init];
     dispatch_async(self.fetchQueue, ^{
         if (operation.isCancelled) {
             // Cancelled
@@ -192,15 +192,18 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 - (BOOL)shouldBlockFailedURLWithURL:(NSURL *)url error:(NSError *)error {
-    if ([error.domain isEqualToString:SDWebImagePhotosErrorDomain]) {
-        return error.code == SDWebImagePhotosErrorInvalidURL
-        || error.code == SDWebImagePhotosErrorNotImageAsset;
+    BOOL shouldBlockFailedURL = NO;
+    if ([error.domain isEqualToString:SDWebImageErrorDomain]) {
+        shouldBlockFailedURL = error.code == SDWebImageErrorInvalidURL
+        || error.code == SDWebImageErrorBadImageData;
+    } else if ([error.domain isEqualToString:SDWebImagePhotosErrorDomain]) {
+        shouldBlockFailedURL = error.code == SDWebImagePhotosErrorNotImageAsset;
     }
-    return NO;
+    return shouldBlockFailedURL;
 }
 
 // This is used for normal image loading (With `requestImage:` API)
-- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageWithAsset:(PHAsset *)asset operation:(SDImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
@@ -208,9 +211,9 @@ typedef CGImagePropertyOrientation SDImageOrientation;
         requestOptions = self.imageRequestOptions;
     }
     CGSize targetSize = requestOptions.sd_targetSize;
-    if (CGSizeEqualToSize(targetSize, SDWebImagePhotosLoaderPixelSize)) {
+    if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPixelSize)) {
         targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-    } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosLoaderPointSize)) {
+    } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPointSize)) {
         CGFloat scale = 1;
         NSNumber *scaleValue = [context valueForKey:SDWebImageContextImageScaleFactor];
         if (scaleValue) {
@@ -277,7 +280,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
 }
 
 // This is used for animated image loading (With `requestImageData:` API)
-- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDWebImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (void)fetchImageDataWithAsset:(PHAsset *)asset operation:(SDImagePhotosLoaderOperation *)operation url:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
     PHImageRequestOptions *requestOptions;
     if ([context valueForKey:SDWebImageContextPhotosImageRequestOptions]) {
         requestOptions = [context valueForKey:SDWebImageContextPhotosImageRequestOptions];
@@ -317,9 +320,13 @@ typedef CGImagePropertyOrientation SDImageOrientation;
                     return;
                 }
                 UIImage *image = SDImageLoaderDecodeImageData(imageData, url, options, context);
+                NSError *error;
+                if (!image) {
+                    error = [NSError errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorBadImageData userInfo:nil];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (completedBlock) {
-                        completedBlock(image, imageData, nil, YES);
+                        completedBlock(image, imageData, error, YES);
                     }
                 });
             });

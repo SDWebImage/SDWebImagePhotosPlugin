@@ -15,7 +15,7 @@
 - (CGSize)sd_targetSize {
     NSValue *value = objc_getAssociatedObject(self, @selector(sd_targetSize));
     if (!value) {
-        return SDWebImagePhotosLoaderPixelSize;
+        return SDWebImagePhotosPixelSize;
     }
 #if SD_MAC
     CGSize targetSize = value.sizeValue;

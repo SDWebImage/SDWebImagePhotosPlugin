@@ -8,11 +8,11 @@
 
 #import <Photos/Photos.h>
 
-// PHImageRequestOptions category to provide targetSize and contentMode when fetch Photos image asset
+/// PHImageRequestOptions category to provide targetSize and contentMode when fetch Photos image asset
 @interface PHImageRequestOptions (SDWebImagePhotosPlugin)
 
 /**
- The `targetSize` value for image asset request. Defaults to `SDWebImagePhotosLoaderPixelSize`.
+ The `targetSize` value for image asset request. Defaults to `SDWebImagePhotosPixelSize`.
  */
 @property (nonatomic, assign) CGSize sd_targetSize;
 

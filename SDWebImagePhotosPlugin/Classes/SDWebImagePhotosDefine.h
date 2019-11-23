@@ -17,13 +17,13 @@ FOUNDATION_EXPORT NSString * _Nonnull const SDWebImagePhotosScheme;
  * Specify to use the exact size of image instead of original pixel size.
  * This is the default value if you don't specify any targetSize.
  */
-FOUNDATION_EXPORT const CGSize SDWebImagePhotosLoaderPixelSize;
+FOUNDATION_EXPORT const CGSize SDWebImagePhotosPixelSize;
 
 /**
  * Specify to use the exact size of image instead of original point size.
  * The scale is from the custom scale factor, or using the device scale factor if not provide.
  */
-FOUNDATION_EXPORT const CGSize SDWebImagePhotosLoaderPointSize;
+FOUNDATION_EXPORT const CGSize SDWebImagePhotosPointSize;
 
 /**
  * Because Photos Framework progressBlock does not contains the file size, only the progress. See `PHAssetImageProgressHandler`.

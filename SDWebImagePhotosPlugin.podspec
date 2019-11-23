@@ -28,6 +28,11 @@ This is a SDWebImage loader plugin to support Apple's Photos framework image ass
 
   s.source_files = 'SDWebImagePhotosPlugin/Classes/**/*', 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.h'
   s.module_map = 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.modulemap'
+
+  s.pod_target_xcconfig = {
+    'SUPPORTS_MACCATALYST' => 'YES',
+    'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO'
+  }
   
   s.frameworks = 'Photos'
   s.dependency 'SDWebImage/Core', '~> 5.0'

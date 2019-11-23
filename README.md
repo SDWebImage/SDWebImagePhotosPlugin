@@ -64,14 +64,14 @@ You can create custom manager for temporary usage. When you use custom manager, 
 
 ```objectivec
 // Assign loader to custom manager
-SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDWebImagePhotosLoader.sharedLoader];
+SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDImagePhotosLoader.sharedLoader];
 ```
 
 + Swift
 
 ```swift
 // Assign loader to custom manager
-let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDWebImagePhotosLoader.shared)
+let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDImagePhotosLoader.shared)
 ```
 
 #### Use loaders manager (globally)
@@ -81,7 +81,7 @@ You can replace the default manager's loader implementation using [loaders manag
 
 ```objectivec
 // Supports HTTP URL as well as Photos URL globally
-SDImageLoadersManager.sharedManager.loaders = @[SDWebImageDownloader.sharedDownloader, SDWebImagePhotosLoader.sharedLoader];
+SDImageLoadersManager.sharedManager.loaders = @[SDWebImageDownloader.sharedDownloader, SDImagePhotosLoader.sharedLoader];
 // Replace default manager's loader implementation
 SDWebImageManager.defaultImageLoader = SDImageLoadersManager.sharedManager;
 ```
@@ -90,7 +90,7 @@ SDWebImageManager.defaultImageLoader = SDImageLoadersManager.sharedManager;
 
 ```swift
 // Supports HTTP URL as well as Photos URL globally
-SDImageLoadersManager.shared.loaders = [SDWebImageDownloader.shared, SDWebImagePhotosLoader.shared]
+SDImageLoadersManager.shared.loaders = [SDWebImageDownloader.shared, SDImagePhotosLoader.shared]
 // Replace default manager's loader implementation
 SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
 ```
@@ -136,13 +136,13 @@ SDWebImagePhotosPlugin supports to load Video Asset poster as well. By default w
 + Objective-C
 
 ```objectivec
-SDWebImagePhotosLoader.sharedLoader.requestImageAssetOnly = NO;
+SDImagePhotosLoader.sharedLoader.requestImageAssetOnly = NO;
 ``` 
 
 + Swift
 
 ```swift
-SDWebImagePhotosLoader.shared.requestImageAssetOnly = false
+SDImagePhotosLoader.shared.requestImageAssetOnly = false
 ```
 
 Then just request the PHAssets or using the fetch options, which the media type is `.video`.
@@ -157,7 +157,7 @@ To specify options like `PHFetchOptions` or `PHImageRequestOptions` for Photos L
 // ignore iCloud Shared Album (`localIdentifier` Photos URL only)
 PHFetchOptions *fetchOptions = [PHFetchOptions new];
 fetchOptions.predicate = [NSPredicate predicateWithFormat:@"sourceType != %d", PHAssetSourceTypeCloudShared];
-SDWebImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
+SDImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 
 // request-level options
 // allows iCloud Photos Library
@@ -173,7 +173,7 @@ requestOptions.networkAccessAllowed = YES;
 // ignore iCloud Shared Album (`localIdentifier` Photos URL only)
 let fetchOptions = PHFetchOptions()
 fetchOptions.predicate = NSPredicate(format: "sourceType != %d", PHAssetSourceType.typeCloudShared.rawValue)
-SDWebImagePhotosLoader.shared.fetchOptions = fetchOptions
+SDImagePhotosLoader.shared.fetchOptions = fetchOptions
 
 // request-level options
 // allows iCloud Photos Library
@@ -192,7 +192,7 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 
 The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
 
-By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosLoaderPixelSize`), which may consume much memory on iOS device.
+By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosPixelSize`), which may consume much memory on iOS device.
 
 ## Demo
 
