@@ -192,7 +192,7 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 
 The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
 
-By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosLoaderPixelSize`), which may consume much memory on iOS device.
+By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosPixelSize`), which may consume much memory on iOS device.
 
 ## Demo
 

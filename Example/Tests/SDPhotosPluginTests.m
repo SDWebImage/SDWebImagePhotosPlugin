@@ -28,7 +28,7 @@
 
 - (void)testUIImageViewSetImageWithAsset {
     XCTestExpectation *expectation = [self expectationWithDescription:@"UIImageView setImageWithAsset"];
-    SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDWebImagePhotosLoader.sharedLoader];
+    SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDImagePhotosLoader.sharedLoader];
     PHAsset *asset = [self smartAlbumAssets].firstObject;
     expect(asset).notTo.beNil();
     NSURL *originalImageURL = [NSURL sd_URLWithAsset:asset];
@@ -51,7 +51,7 @@
 
 - (void)testUIImageViewSetImageWithAssetLocalIdentifier {
     XCTestExpectation *expectation = [self expectationWithDescription:@"UIImageView setImageWithAssetLocalIdentifier"];
-    SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDWebImagePhotosLoader.sharedLoader];
+    SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDImagePhotosLoader.sharedLoader];
     NSString *localIdentifier = [self smartAlbumAssets].firstObject.localIdentifier;
     expect(localIdentifier).notTo.beNil();
     NSURL *originalImageURL = [NSURL sd_URLWithAssetLocalIdentifier:localIdentifier];
@@ -87,7 +87,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // Query the GIF image with localIdentifier
-            SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDWebImagePhotosLoader.sharedLoader];
+            SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDImagePhotosLoader.sharedLoader];
             NSURL *originalImageURL = [NSURL sd_URLWithAssetLocalIdentifier:localIdentifier];
             
             UIImageView *imageView = [[UIImageView alloc] init];

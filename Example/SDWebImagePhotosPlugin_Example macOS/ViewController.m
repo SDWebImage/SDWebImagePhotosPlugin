@@ -27,10 +27,10 @@
     if (self) {
         self.objects = [NSMutableArray array];
         // Setup Photos Loader
-        SDWebImageManager.defaultImageLoader = [SDWebImagePhotosLoader sharedLoader];
+        SDWebImageManager.defaultImageLoader = [SDImagePhotosLoader sharedLoader];
         PHImageRequestOptions *options = [PHImageRequestOptions new];
         options.sd_targetSize = CGSizeMake(500, 500); // The original image size may be 4K, we only query the max view size :)
-        SDWebImagePhotosLoader.sharedLoader.imageRequestOptions = options;
+        SDImagePhotosLoader.sharedLoader.imageRequestOptions = options;
         
         // Reload
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuItemDidTap:) name:NSMenuDidSendActionNotification object:nil];
