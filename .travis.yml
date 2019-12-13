@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.4
+osx_image: xcode11.2
 
 env:
   global:
@@ -15,10 +15,9 @@ notifications:
 before_install:
   - env
   - locale
-  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --no-document --quiet
+  - gem install xcpretty --no-document --quiet
   - pod --version
-  - pod setup --silent > /dev/null
   - pod repo update --silent
   - xcpretty --version
   - xcodebuild -version
@@ -32,14 +31,14 @@ script:
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme SDWebImagePhotosPlugin-Example -sdk iphonesimulator -destination 'name=iPhone 8' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme SDWebImagePhotosPlugin-Example -destination 'platform=iOS Simulator,name=iPhone 11 Pro' -configuration Debug | xcpretty -c
 
   - echo Clean DerivedData
+  - rm -rf ~/Library/Developer/Xcode/DerivedData/
   - mkdir DerivedData
-  - rm -rf ~/Library/Developer/Xcode/DerivedData
 
   - echo Run the tests
-  - xcodebuild test -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme 'SDWebImagePhotosPlugin_Tests' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty -c
+  - xcodebuild test -workspace Example/SDWebImagePhotosPlugin.xcworkspace -scheme 'SDWebImagePhotosPlugin_Tests' -destination 'platform=iOS Simulator,name=iPhone 11 Pro' -configuration Debug | xcpretty -c
   - mv ~/Library/Developer/Xcode/DerivedData/ ./DerivedData/iOS
 
 after_success:
