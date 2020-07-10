@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosPlugin.h>
 #import "TestCollectionViewItem.h"
-#import "PHCollection.h" // Currently seems `PHAssetCollection` is not list in public header, but it works
 
 @interface ViewController () <NSCollectionViewDelegate, NSCollectionViewDataSource>
 
@@ -45,6 +44,8 @@
     [self reloadData];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 - (void)fetchAssets {
     [self.objects removeAllObjects];
     PHFetchResult<PHAssetCollection *> *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
@@ -63,6 +64,7 @@
         [self.objects addObject:url];
     }
 }
+#pragma clang diagnostic pop
 
 - (void)menuItemDidTap:(NSNotification *)notification {
     NSMenuItem *menuItem = notification.userInfo[@"MenuItem"];

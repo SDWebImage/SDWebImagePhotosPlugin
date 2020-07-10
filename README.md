@@ -182,17 +182,55 @@ requestOptions.networkAccessAllowed = true
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosImageRequestOptions: requestOptions, .customManager: manager])
 ```
 
+#### Control Query Image Size
+The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
+
+By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosPixelSize`), which may consume much memory on iOS device.
+
+You can change the fetch image size by either using the `PHImageRequestOptions.sd_targetSize`, or [Thumbnail Decoding](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#thumbnail-decoding-550) via `.imageThumbnailPixelSize` context option.
+
+Control query image size limit in global:
+
++ Objective-C
+
+```objective-c
+SDImagePhotosLoader.sharedLoader.imageRequestOptions.sd_targetSize = CGSizeMake(1000, 1000); // Limit 1000x1000 pixels
+```
+
++ Swift
+
+```swift
+SDImagePhotosLoader.shared.imageRequestOptions.sd_targetSize = CGSize(width: 1000, height: 1000) // Limit 1000x1000 pixels
+```
+
+Control query image size for individual assets:
+
++ Objective-C
+
+```objective-c
+UIImageView *imageView;
+PHAsset *asset;
+NSURL *url = [NSURL URLWithAsset:asset];
+[imageView.sd_setImageWithURL:url options:0 context:@{SDWebImageContextImageThumbnailPixelSize: @(imageView.bounds.size)}]; // Fetch image based on image view size
+```
+
++ Swift
+
+```swift
+let imageView: UIImageView
+let asset: PHAsset
+let url = URL.sd_URL(with: asset)
+imageView.sd_setImage(with url, context: [.imageThumbnailPixelSize : imageView.bounds.size] // Fetch image based on image view size
+```
+
+Note: You can also use `SDWebImageContextPhotosImageRequestOptions` talked above. But the thumbnail pixel size can be used for normal Network URL as well, this can help you to unify the logic for HTTP URL or PHAsset URL.
+
+
 ## Tips
 
 1. Since Photos Library image is already stored on the device disk. And query speed is fast enough for small resolution image. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage. And use `SDWebImageFromLoaderOnly` to disable cache query.
 2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (by default) to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
 3. By default, we will prefer using Photos [requestImageForAsset:targetSize:contentMode:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616964-requestimageforasset?language=objc) API for normal images, using [requestImageDataForAsset:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616957-requestimagedataforasset?language=objc) for animated images like GIF asset. If you need the raw image data for further image processing, you can always pass `SDWebImageContextPhotosRequestImageData` context option to force using the request data API instead. Note when request data, the `targetSize` and `contentMode` options are ignored. If you need smaller image size, consider using [Image Transformer](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#image-transformer-50) feature from SDWebImage 5.0
-
-## Warning
-
-The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
-
-By default, we query the target size matching the original image pixel size (See: `SDWebImagePhotosPixelSize`), which may consume much memory on iOS device.
 
 ## Demo
 

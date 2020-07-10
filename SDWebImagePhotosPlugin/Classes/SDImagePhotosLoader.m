@@ -211,27 +211,45 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     } else {
         requestOptions = self.imageRequestOptions;
     }
-    CGSize targetSize = requestOptions.sd_targetSize;
-    if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPixelSize)) {
-        targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-    } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPointSize)) {
-        CGFloat scale = 1;
-        NSNumber *scaleValue = [context valueForKey:SDWebImageContextImageScaleFactor];
-        if (scaleValue) {
-            scale = scaleValue.doubleValue;
-            if (scale < 1) {
-                scale = 1;
-            }
-        } else {
-#if SD_MAC
-            scale = [NSScreen mainScreen].backingScaleFactor;
-#else
-            scale = [UIScreen mainScreen].scale;
-#endif
+    CGSize targetSize;
+    PHImageContentMode contentMode;
+    // Check Thumbnail
+    if ([context valueForKey:SDWebImageContextImageThumbnailPixelSize]) {
+        NSValue *thumbnailSizeValue = [context valueForKey:SDWebImageContextImageThumbnailPixelSize];
+        #if SD_MAC
+        targetSize = thumbnailSizeValue.sizeValue;
+        #else
+        targetSize = thumbnailSizeValue.CGSizeValue;
+        #endif
+        BOOL preserveAspectRatio = YES;
+        if ([context valueForKey:SDWebImageContextImagePreserveAspectRatio]) {
+            preserveAspectRatio =  [[context valueForKey:SDWebImageContextImagePreserveAspectRatio] boolValue];
         }
-        targetSize = CGSizeMake(asset.pixelHeight * scale, asset.pixelHeight * scale);
+        contentMode = preserveAspectRatio ? PHImageContentModeAspectFit : PHImageContentModeAspectFill;
+    } else {
+        // Use request options
+        targetSize = requestOptions.sd_targetSize;
+        if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPixelSize)) {
+            targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
+        } else if (CGSizeEqualToSize(targetSize, SDWebImagePhotosPointSize)) {
+            CGFloat scale = 1;
+            NSNumber *scaleValue = [context valueForKey:SDWebImageContextImageScaleFactor];
+            if (scaleValue) {
+                scale = scaleValue.doubleValue;
+                if (scale < 1) {
+                    scale = 1;
+                }
+            } else {
+#if SD_MAC
+                scale = [NSScreen mainScreen].backingScaleFactor;
+#else
+                scale = [UIScreen mainScreen].scale;
+#endif
+            }
+            targetSize = CGSizeMake(asset.pixelHeight * scale, asset.pixelHeight * scale);
+        }
+        contentMode = requestOptions.sd_contentMode;
     }
-    PHImageContentMode contentMode = requestOptions.sd_contentMode;
     
     // Progerss Handler
     if (progressBlock) {

@@ -73,7 +73,6 @@
 		323FADC621008DA00043BD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323FADC721008DA00043BD86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		323FADC921008DA00043BD86 /* SDWebImagePhotosPlugin_Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWebImagePhotosPlugin_Example_macOS.entitlements; sourceTree = "<group>"; };
-		323FADD0210095550043BD86 /* PHCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHCollection.h; sourceTree = "<group>"; };
 		32893E5A213EAAF7007FCEC7 /* SDTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestCase.h; sourceTree = "<group>"; };
 		32893E5B213EAAF7007FCEC7 /* SDTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestCase.m; sourceTree = "<group>"; };
 		32893E5C213EAAF7007FCEC7 /* SDPhotosPluginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotosPluginTests.m; sourceTree = "<group>"; };
@@ -162,7 +161,6 @@
 				323ADD382253C1EA0083BC1C /* TestCollectionViewItem.h */,
 				323ADD392253C1EA0083BC1C /* TestCollectionViewItem.m */,
 				323ADD3A2253C1EA0083BC1C /* TestCollectionViewItem.xib */,
-				323FADD0210095550043BD86 /* PHCollection.h */,
 				323FADC121008DA00043BD86 /* Assets.xcassets */,
 				323FADC321008DA00043BD86 /* Main.storyboard */,
 				323FADC621008DA00043BD86 /* Info.plist */,
