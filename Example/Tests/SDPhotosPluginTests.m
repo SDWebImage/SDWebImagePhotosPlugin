@@ -36,7 +36,7 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     [imageView sd_setImageWithURL:originalImageURL
                  placeholderImage:nil
-                          options:0
+                          options:SDWebImageFromLoaderOnly
                           context:@{SDWebImageContextCustomManager : manager}
                          progress:nil
                         completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -59,12 +59,37 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     [imageView sd_setImageWithURL:originalImageURL
                  placeholderImage:nil
-                          options:0
+                          options:SDWebImageFromLoaderOnly
                           context:@{SDWebImageContextCustomManager : manager}
                          progress:nil
                         completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                             expect(image).toNot.beNil();
                             expect(error).to.beNil();
+                            expect(originalImageURL).to.equal(imageURL);
+                            expect(imageView.image).to.equal(image);
+                            [expectation fulfill];
+                        }];
+    [self waitForExpectationsWithTimeout:kAsyncTestTimeout handler:nil];
+}
+
+- (void)testUIImageViewSetImageWithAssetAndThumbnailPixelSize {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"UIImageView setImageWithAssetAndThumbnailPixelSize"];
+    SDWebImageManager *manager = [[SDWebImageManager alloc] initWithCache:SDImageCache.sharedImageCache loader:SDImagePhotosLoader.sharedLoader];
+    PHAsset *asset = [self smartAlbumAssets].firstObject;
+    expect(asset).notTo.beNil();
+    NSURL *originalImageURL = [NSURL sd_URLWithAsset:asset];
+    CGSize thumbnailPixelSize = CGSizeMake(1000, 1000);
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:originalImageURL
+                 placeholderImage:nil
+                          options:0
+                          context:@{SDWebImageContextCustomManager : manager, SDWebImageContextImageThumbnailPixelSize : @(thumbnailPixelSize)}
+                         progress:nil
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                            expect(image).toNot.beNil();
+                            expect(error).to.beNil();
+                            expect(MAX(image.size.width, image.size.height), MAX(thumbnailPixelSize.width, thumbnailPixelSize.height)); // Aspect Fit
                             expect(originalImageURL).to.equal(imageURL);
                             expect(imageView.image).to.equal(image);
                             [expectation fulfill];
@@ -93,7 +118,7 @@
             UIImageView *imageView = [[UIImageView alloc] init];
             [imageView sd_setImageWithURL:originalImageURL
                          placeholderImage:nil
-                                  options:0
+                                  options:SDWebImageFromLoaderOnly
                                   context:@{SDWebImageContextCustomManager : manager}
                                  progress:nil
                                 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -101,8 +126,14 @@
                                     expect(imageView.image).equal(image);
                                     // Expect animated image
                                     expect(image.sd_isAnimated).to.beTruthy();
-                                    [expectation fulfill];
-                                }];
+                                    // Clean the temp GIF asset
+                                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                                        PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:nil];
+                                        [PHAssetChangeRequest deleteAssets:assets];
+                                    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                                        [expectation fulfill];
+                                    }];
+            }];
         });
     }];
     
