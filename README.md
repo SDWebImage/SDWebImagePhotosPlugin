@@ -210,7 +210,7 @@ Control query image size for individual assets:
 ```objective-c
 UIImageView *imageView;
 PHAsset *asset;
-NSURL *url = [NSURL URLWithAsset:asset];
+NSURL *url = [NSURL sd_URLWithAsset:asset];
 [imageView.sd_setImageWithURL:url options:0 context:@{SDWebImageContextImageThumbnailPixelSize: @(imageView.bounds.size)}]; // Fetch image based on image view size
 ```
 
@@ -220,7 +220,7 @@ NSURL *url = [NSURL URLWithAsset:asset];
 let imageView: UIImageView
 let asset: PHAsset
 let url = URL.sd_URL(with: asset)
-imageView.sd_setImage(with url, context: [.imageThumbnailPixelSize : imageView.bounds.size] // Fetch image based on image view size
+imageView.sd_setImage(with: url, context: [.imageThumbnailPixelSize : imageView.bounds.size]) // Fetch image based on image view size
 ```
 
 Note: You can also use `SDWebImageContextPhotosImageRequestOptions` talked above. But the thumbnail pixel size can be used for normal Network URL as well, this can help you to unify the logic for HTTP URL or PHAsset URL.
