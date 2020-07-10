@@ -35,5 +35,5 @@ This is a SDWebImage loader plugin to support Apple's Photos framework image ass
   }
   
   s.frameworks = 'Photos'
-  s.dependency 'SDWebImage/Core', '~> 5.6'
+  s.dependency 'SDWebImage/Core', '~> 5.5'
 end
