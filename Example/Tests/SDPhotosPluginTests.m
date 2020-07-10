@@ -126,13 +126,15 @@
                                     expect(imageView.image).equal(image);
                                     // Expect animated image
                                     expect(image.sd_isAnimated).to.beTruthy();
-                                    // Clean the temp GIF asset
-                                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                                        PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:nil];
-                                        [PHAssetChangeRequest deleteAssets:assets];
-                                    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-                                        [expectation fulfill];
-                                    }];
+                                    [expectation fulfill];
+// The removal of temp GIF will cause a GUI dialog which is not suitable for running on CI machine :(
+//                                    // Clean the temp GIF asset
+//                                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//                                        PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:nil];
+//                                        [PHAssetChangeRequest deleteAssets:assets];
+//                                    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//                                        [expectation fulfill];
+//                                    }];
             }];
         });
     }];
