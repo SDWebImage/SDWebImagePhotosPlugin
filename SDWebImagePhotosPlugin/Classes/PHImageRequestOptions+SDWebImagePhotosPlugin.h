@@ -12,7 +12,7 @@
 @interface PHImageRequestOptions (SDWebImagePhotosPlugin)
 
 /**
- The `targetSize` value for image asset request. Defaults to `SDWebImagePhotosPixelSize`.
+ The `targetSize` value for image asset request. Defaults to `PHImageManagerMaximumSize`.
  */
 @property (nonatomic, assign) CGSize sd_targetSize;
 
