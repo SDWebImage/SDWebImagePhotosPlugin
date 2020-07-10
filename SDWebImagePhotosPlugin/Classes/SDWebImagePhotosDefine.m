@@ -9,8 +9,9 @@
 #import "SDWebImagePhotosDefine.h"
 
 NSString * _Nonnull const SDWebImagePhotosScheme = @"ph";
-const CGSize SDWebImagePhotosPixelSize = {.width = 0, .height = 0};
-const CGSize SDWebImagePhotosPointSize = {.width = -1, .height = -1};
+// PHImageManagerMaximumSize value is (-1.0, -1.0)
+const CGSize SDWebImagePhotosPixelSize = {.width = -2.0, .height = -2.0};
+const CGSize SDWebImagePhotosPointSize = {.width = -3.0, .height = -3.0};
 const int64_t SDWebImagePhotosProgressExpectedSize = 100LL;
 
 SDWebImageContextOption _Nonnull const SDWebImageContextPhotosFetchOptions = @"photosFetchOptions";

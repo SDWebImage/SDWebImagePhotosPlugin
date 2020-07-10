@@ -19,7 +19,8 @@ FOUNDATION_EXPORT NSString * _Nonnull const SDWebImagePhotosScheme;
 
 /**
  * Specify to use the exact size of image instead of original pixel size.
- * This is the default value if you don't specify any targetSize.
+ * Use this size if you want full image that PHImageManagerMaximumSize can not provide. This is the designed behavior for PhotoKit.
+ * @note SDWebImagePhotosPixelSize > PHImageManagerMaximumSize(default) > SDWebImagePhotosPointSize
  */
 FOUNDATION_EXPORT const CGSize SDWebImagePhotosPixelSize;
 
