@@ -8,7 +8,7 @@
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 [![codecov](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin)
 
-## What's for
+## What it's for
 SDWebImagePhotosPlugin is a plugin for the [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provides image loading support for the [Photos Library](https://developer.apple.com/documentation/photokit).
 
 This plugin allows you to use your familiar View Category method from SDWebImage, for loading Photos images with `PHAsset` or `localIdentifier`.
@@ -130,7 +130,7 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context: [.customM
 SDWebImagePhotosPlugin supports GIF images stored in Photos Library as well. Just use the same API as normal images to query the asset. We will query the image data and decode the animated images (compatible with `UIImageView` as well as [SDAnimatedImageView](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50))
 
 
-#### Video Asset
+#### Video Assets
 SDWebImagePhotosPlugin supports loading Video Asset poster as well. By default, we don't allow non-image type assets, to avoid accidentally picking a wrong Asset. But you can disable this limit as well.
 
 + Objective-C
