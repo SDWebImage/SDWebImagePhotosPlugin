@@ -9,9 +9,9 @@
 [![codecov](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImagePhotosPlugin)
 
 ## What's for
-SDWebImagePhotosPlugin is a plugin for [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provide the image loading support for [Photos Library](https://developer.apple.com/documentation/photokit).
+SDWebImagePhotosPlugin is a plugin for the [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provides image loading support for the [Photos Library](https://developer.apple.com/documentation/photokit).
 
-By using this plugin, it allows you to use your familiar View Category method from SDWebImage, to load Photos image with `PHAsset` or `localIdentifier`.
+This plugin allows you to use your familiar View Category method from SDWebImage, for loading Photos images with `PHAsset` or `localIdentifier`.
 
 
 ## Requirements
@@ -53,12 +53,12 @@ let package = Package(
 ```
 
 ## Usage
-**Important!** To use Photos Library plugin. Firstly you need to register the photos loader to image manager.
+**Important!** To use this Photos Library plugin, you first need to register the photos loader to image manager.
 
-There are two ways to register the photos loader. One for temporarily usage (when providing URL is definitely Photos URL but not HTTP URL), and another for global support (don't need any check, support both HTTP URL as well as Photos URL).
+There are two ways to register the photos loader. One is for temporarily usage (when providing URL is definitely Photos URL but not HTTP URL), and another for global support (don't need any check, supports both HTTP URL as well as Photos URL).
 
 #### Use custom manager (temporarily)
-You can create custom manager for temporary usage. When you use custom manager, be sure to specify `SDWebImageContextCustomManager` context option with your custom manager for View Category methods.
+You can create a custom manager for temporary usage. When you use custom manager, be sure to specify `SDWebImageContextCustomManager` context option with your custom manager for View Category methods.
 
 + Objective-C
 
@@ -75,7 +75,7 @@ let manager = SDWebImageManager(cache: SDImageCache.shared, loader: SDImagePhoto
 ```
 
 #### Use loaders manager (globally)
-You can replace the default manager's loader implementation using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager) to support both HTTP && Photos URL globally. Put these code just at the application launch time (or time just before `SDWebImageManager.sharedManager` initialized).
+You can replace the default manager's loader implementation using [loaders manager](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#loaders-manager) to support both HTTP && Photos URL globally. Put these code just at the application launch time (or some time just before `SDWebImageManager.sharedManager` is initialized).
 
 + Objective-C
 
@@ -96,7 +96,7 @@ SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
 ```
 
 #### Load Images
-To start load Photos Library image, use the `NSURL+SDWebImagePhotosPlugin` to create a Photos URL and call View Category method.
+To start loading the Photos Library image, use the `NSURL+SDWebImagePhotosPlugin` to create a Photos URL and call View Category method.
 
 + Objective-C
 
@@ -131,7 +131,7 @@ SDWebImagePhotosPlugin supports GIF images stored in Photos Library as well. Jus
 
 
 #### Video Asset
-SDWebImagePhotosPlugin supports to load Video Asset poster as well. By default we don't allow non-image type asset, to avoid the accidentally pick of wrong Asset. But you can disable this limit as well.
+SDWebImagePhotosPlugin supports loading Video Asset poster as well. By default, we don't allow non-image type assets, to avoid accidentally picking a wrong Asset. But you can disable this limit as well.
 
 + Objective-C
 
@@ -183,9 +183,9 @@ imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosIm
 ```
 
 #### Control Query Image Size
-The Photos taken by iPhone's Camera, its pixel size may be really large (4K+). So if you want to load large Photos Library assets for rendering, you'd better specify target size with a limited size (like you render imageView's size).
+Photos taken by the iPhone camera may have a really large pixel size (4K+). So, if you want to load large Photos Library assets for rendering, you should specify target size with a limited size (for example, the size of the imageView that you are loading into).
 
-By default, we query the target size matching the original image largest size (See: [PHImageManagerMaximumSize](https://developer.apple.com/documentation/photokit/phimagemanagermaximumsize?language=objc)), which may consume much memory on iOS device. There are also two built-in dynamic value `SDWebImagePhotosPixelSize/SDWebImagePhotosPointSize` which suitable for some cases.
+By default, we query the target size that matches the original image's largest size (see: [PHImageManagerMaximumSize](https://developer.apple.com/documentation/photokit/phimagemanagermaximumsize?language=objc)), which may consume too much memory on iOS devices. There are also two built-in dynamic values `SDWebImagePhotosPixelSize/SDWebImagePhotosPointSize` which are suitable for some cases.
 
 You can change the fetch image size by either using the `PHImageRequestOptions.sd_targetSize`, or [Thumbnail Decoding](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#thumbnail-decoding-550) via `.imageThumbnailPixelSize` context option.
 
@@ -223,18 +223,18 @@ let url = URL.sd_URL(with: asset)
 imageView.sd_setImage(with: url, context: [.imageThumbnailPixelSize : imageView.bounds.size]) // Fetch image based on image view size
 ```
 
-Note: You can also use `SDWebImageContextPhotosImageRequestOptions` talked above. But the thumbnail pixel size can be used for normal Network URL as well, this can help you to unify the logic for HTTP URL or PHAsset URL.
+Note: You can also use `SDWebImageContextPhotosImageRequestOptions` as shown above. But the thumbnail pixel size can be used for normal Network URL as well, which can help you to unify the logic for HTTP URL and PHAsset URL.
 
 
 ## Tips
 
-1. Since Photos Library image is already stored on the device disk. And query speed is fast enough for small resolution image. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage. And use `SDWebImageFromLoaderOnly` to disable cache query.
-2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (by default) to load the image, PhotosKit will return a degraded thumb image firstly and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. But this will not trigger the View Category completion block, only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
-3. By default, we will prefer using Photos [requestImageForAsset:targetSize:contentMode:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616964-requestimageforasset?language=objc) API for normal images, using [requestImageDataForAsset:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616957-requestimagedataforasset?language=objc) for animated images like GIF asset. If you need the raw image data for further image processing, you can always pass `SDWebImageContextPhotosRequestImageData` context option to force using the request data API instead. Note when request data, the `targetSize` and `contentMode` options are ignored. If you need smaller image size, consider using [Image Transformer](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#image-transformer-50) feature from SDWebImage 5.0
+1. Images from the Photos Library are already stored on the device disk, and query speed is fast enough for small resolution images, so cache storage might be unnecessary. You can use `SDWebImageContextStoreCacheType` with `SDImageCacheTypeNone` to disable cache storage, and use `SDWebImageFromLoaderOnly` to disable cache queries.
+2. If you use `PHImageRequestOptionsDeliveryModeOpportunistic` (default) to load the image, PhotosKit will return a degraded thumbnail image first and again with the full pixel image. When the image is degraded, the loader completion block will set `finished = NO`. However, this will not trigger the View Category completion block, and only trigger a image refresh (like progressive loading behavior for network image using `SDWebImageProgressiveLoad`)
+3. By default, we will prefer using Photos [requestImageForAsset:targetSize:contentMode:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616964-requestimageforasset?language=objc) API for normal images, using [requestImageDataForAsset:options:resultHandler:](https://developer.apple.com/documentation/photokit/phimagemanager/1616957-requestimagedataforasset?language=objc) for animated images like GIF asset. If you need the raw image data for further image processing, you can always pass the `SDWebImageContextPhotosRequestImageData` context option to force using the request data API instead. Note that when requesting data, the `targetSize` and `contentMode` options are ignored. If you need smaller image sizes, consider using [Image Transformer](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#image-transformer-50) feature from SDWebImage 5.0.
 
 ## Demo
 
-If you have some issue about usage, SDWebImagePhotosPlugin provide a demo for iOS && macOS platform. To run the demo, clone the repo and run the following command.
+If you have some issue about usage, SDWebImagePhotosPlugin provide a demo for iOS & macOS platform. To run the demo, clone the repo and run the following command.
 
 ```bash
 cd Example/
@@ -242,7 +242,7 @@ pod install
 open SDWebImagePhotosPlugin.xcworkspace
 ```
 
-After the Xcode project was opened, click `Run` to build and run the demo.
+After the Xcode project is opened, click <kbd>Run</kbd> to build and run the demo.
 
 ## Author
 
