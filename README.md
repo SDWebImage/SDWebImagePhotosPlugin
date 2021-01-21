@@ -16,7 +16,7 @@ This plugin allows you to use your familiar View Category method from SDWebImage
 
 ## Requirements
 
-+ iOS 8+
++ iOS 9+
 + macOS 10.13+
 + tvOS 10+
 + Xcode 10+
