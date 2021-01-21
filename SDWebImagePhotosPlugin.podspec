@@ -23,7 +23,7 @@ This is a SDWebImage loader plugin to support Apple's Photos framework image ass
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.osx.deployment_target = '10.13'
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '10.0'
 
   s.source_files = 'SDWebImagePhotosPlugin/Classes/**/*', 'SDWebImagePhotosPlugin/Module/SDWebImagePhotosPlugin.h'
@@ -35,5 +35,5 @@ This is a SDWebImage loader plugin to support Apple's Photos framework image ass
   }
   
   s.frameworks = 'Photos'
-  s.dependency 'SDWebImage/Core', '~> 5.5'
+  s.dependency 'SDWebImage/Core', '~> 5.10'
 end
