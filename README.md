@@ -103,7 +103,8 @@ To start loading the Photos Library image, use the `NSURL+SDWebImagePhotosPlugin
 ```objectivec
 // Create with `PHAsset`
 PHAsset *asset;
-NSURL *photosURL = [NSURL sd_URLWithAsset:asset];
+NSURL *photosURL = asset.sd_URLRepresentation;
+// The same as `[NSURL sd_URLWithAsset:asset];`
 // Create with `localIdentifier`
 NSString *identifier;
 NSURL *potosURL = [NSURL sd_URLWithAssetLocalIdentifier:identifier];
@@ -117,10 +118,11 @@ NSURL *potosURL = [NSURL sd_URLWithAssetLocalIdentifier:identifier];
 ```swift
 // Create with `PHAsset`
 let asset: PHAsset
-let photosURL = NSURL.sd_URL(with: asset)
+let photosURL = asset.sd_URLRepresentation
+// The same as `NSURL.sd_URL(with: asset) as URL`
 // Create with `localIdentifier`
 let identifier: String
-let potosURL = NSURL.sd_URL(withAssetLocalIdentifier: identifier)
+let potosURL = NSURL.sd_URL(withAssetLocalIdentifier: identifier) as URL
 
 // Load image (assume using custom manager)
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context: [.customManager: manager])
@@ -210,7 +212,7 @@ Control query image size for individual assets:
 ```objective-c
 UIImageView *imageView;
 PHAsset *asset;
-NSURL *url = [NSURL sd_URLWithAsset:asset];
+NSURL *url = asset.sd_URLRepresentation;
 [imageView.sd_setImageWithURL:url options:0 context:@{SDWebImageContextImageThumbnailPixelSize: @(imageView.bounds.size)}]; // Fetch image based on image view size
 ```
 
@@ -219,7 +221,7 @@ NSURL *url = [NSURL sd_URLWithAsset:asset];
 ```swift
 let imageView: UIImageView
 let asset: PHAsset
-let url = URL.sd_URL(with: asset)
+let url = asset.sd_URLRepresentation
 imageView.sd_setImage(with: url, context: [.imageThumbnailPixelSize : imageView.bounds.size]) // Fetch image based on image view size
 ```
 

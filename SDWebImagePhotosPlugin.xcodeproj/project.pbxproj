@@ -10,6 +10,12 @@
 		3235B28021FAD1E6008668C5 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3235B27F21FAD1E6008668C5 /* Photos.framework */; };
 		3235B28221FAD1ED008668C5 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3235B28121FAD1ED008668C5 /* Photos.framework */; };
 		3235B28421FAD1F5008668C5 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3235B28321FAD1F5008668C5 /* Photos.framework */; };
+		32380B5425B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32380B5225B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32380B5525B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32380B5225B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32380B5625B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32380B5225B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32380B5725B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 32380B5325B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m */; };
+		32380B5825B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 32380B5325B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m */; };
+		32380B5925B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 32380B5325B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m */; };
 		32CCEA13213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA14213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCEA15213E38CD00214381 /* SDWebImagePhotosPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCEA12213E38CD00214381 /* SDWebImagePhotosPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +58,8 @@
 		3235B27F21FAD1E6008668C5 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
 		3235B28121FAD1ED008668C5 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.1.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
 		3235B28321FAD1F5008668C5 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		32380B5225B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+SDWebImagePhotosPlugin.h"; sourceTree = "<group>"; };
+		32380B5325B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+SDWebImagePhotosPlugin.m"; sourceTree = "<group>"; };
 		32CCE9E8213E383E00214381 /* SDWebImagePhotosPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePhotosPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CCE9F8213E384500214381 /* SDWebImagePhotosPlugin_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePhotosPlugin_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CCEA05213E385A00214381 /* SDWebImagePhotosPlugin_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImagePhotosPlugin_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +153,8 @@
 				32CCEA1D213E38F600214381 /* SDWebImagePhotosError.m */,
 				32CCEA20213E38F600214381 /* SDImagePhotosLoader.h */,
 				32CCEA1B213E38F600214381 /* SDImagePhotosLoader.m */,
+				32380B5225B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h */,
+				32380B5325B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -170,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CCEA28213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
+				32380B5425B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA31213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA40213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
 				32CCEA34213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CCEA29213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
+				32380B5525B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA32213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA41213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
 				32CCEA35213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
@@ -196,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CCEA2A213E38F600214381 /* SDWebImagePhotosDefine.h in Headers */,
+				32380B5625B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA33213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.h in Headers */,
 				32CCEA42213E38F600214381 /* SDWebImagePhotosError.h in Headers */,
 				32CCEA36213E38F600214381 /* SDImagePhotosLoader.h in Headers */,
@@ -333,6 +346,7 @@
 				32CCEA3A213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2B213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA2E213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,
+				32380B5725B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA37213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +359,7 @@
 				32CCEA3B213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2C213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA2F213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,
+				32380B5825B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA38213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +372,7 @@
 				32CCEA3C213E38F600214381 /* PHImageRequestOptions+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA2D213E38F600214381 /* SDWebImagePhotosError.m in Sources */,
 				32CCEA30213E38F600214381 /* NSURL+SDWebImagePhotosPlugin.m in Sources */,
+				32380B5925B95E87002A50E1 /* PHAsset+SDWebImagePhotosPlugin.m in Sources */,
 				32CCEA39213E38F600214381 /* SDWebImagePhotosDefine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
