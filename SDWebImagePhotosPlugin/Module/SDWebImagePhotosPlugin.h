@@ -12,6 +12,7 @@
 #endif
 #endif
 
+#import <SDWebImagePhotosPlugin/PHAsset+SDWebImagePhotosPlugin.h>
 #import <SDWebImagePhotosPlugin/NSURL+SDWebImagePhotosPlugin.h>
 #import <SDWebImagePhotosPlugin/PHImageRequestOptions+SDWebImagePhotosPlugin.h>
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosDefine.h>
