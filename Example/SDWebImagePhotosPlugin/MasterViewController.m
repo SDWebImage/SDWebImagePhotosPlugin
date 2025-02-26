@@ -125,10 +125,22 @@
     }
     
     cell.customTextLabel.text = [NSString stringWithFormat:@"Image #%ld", (long)indexPath.row];
+    SDWebImageMutableContext *context = [@{SDWebImageContextStoreCacheType : @(SDImageCacheTypeNone)} mutableCopy];
+    BOOL supportsHDR = NO;
+    if (@available(iOS 16.0, *)) {
+        supportsHDR = UIScreen.mainScreen.potentialEDRHeadroom > 1.0;
+    }
+    if (supportsHDR) {
+        if (@available(iOS 17.0, *)) {
+            cell.customImageView.preferredImageDynamicRange = UIImageDynamicRangeHigh; // Enable Image View Level control for HDR
+        }
+        context[SDWebImageContextPhotosRequestImageData] = @(YES); // Photos Library only load HDR info when requestImageData
+        context[SDWebImageContextImageDecodeToHDR] = @(YES); // When decoding HDR data, we need explicit enable HDR decoding
+    }
     [cell.customImageView sd_setImageWithURL:self.objects[indexPath.row]
                             placeholderImage:placeholderImage
                                      options:SDWebImageFromLoaderOnly
-                                     context:@{SDWebImageContextStoreCacheType : @(SDImageCacheTypeNone)}]; // Disable memory cache query/store
+                                     context:context]; // Disable memory cache query/store
     return cell;
 }
 
