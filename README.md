@@ -157,14 +157,13 @@ To specify options like `PHFetchOptions` or `PHImageRequestOptions` for Photos L
 ```objectivec
 // loader-level options
 // ignore iCloud Shared Album (`localIdentifier` Photos URL only)
-PHFetchOptions *fetchOptions = [PHFetchOptions new];
+PHFetchOptions *fetchOptions = SDImagePhotosLoader.sharedLoader.fetchOptions;
 fetchOptions.predicate = [NSPredicate predicateWithFormat:@"sourceType != %d", PHAssetSourceTypeCloudShared];
-SDImagePhotosLoader.sharedLoader.fetchOptions = fetchOptions;
 
 // request-level options
-// allows iCloud Photos Library
+// disable iCloud Photos Library (networkAccessAllowed defaults to YES)
 PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
-requestOptions.networkAccessAllowed = YES;
+requestOptions.networkAccessAllowed = NO;
 [imageView sd_setImageWithURL:photosURL placeholderImage:nil context:@{SDWebImageContextPhotosImageRequestOptions: requestOptions, SDWebImageContextCustomManager: manager}];
 ```
 
@@ -173,14 +172,13 @@ requestOptions.networkAccessAllowed = YES;
 ```swift
 // loader-level options
 // ignore iCloud Shared Album (`localIdentifier` Photos URL only)
-let fetchOptions = PHFetchOptions()
+let fetchOptions = SDImagePhotosLoader.shared.fetchOptions
 fetchOptions.predicate = NSPredicate(format: "sourceType != %d", PHAssetSourceType.typeCloudShared.rawValue)
-SDImagePhotosLoader.shared.fetchOptions = fetchOptions
 
 // request-level options
-// allows iCloud Photos Library
+// disable iCloud Photos Library (networkAccessAllowed defaults to YES)
 let requestOptions = PHImageRequestOptions()
-requestOptions.networkAccessAllowed = true
+requestOptions.networkAccessAllowed = false
 imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:[.photosImageRequestOptions: requestOptions, .customManager: manager])
 ```
 
