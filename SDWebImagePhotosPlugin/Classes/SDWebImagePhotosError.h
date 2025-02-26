@@ -10,9 +10,12 @@
 
 FOUNDATION_EXPORT NSErrorDomain const SDWebImagePhotosErrorDomain;
 
+/// The error domain for SDWebImagePhotosPlugin's NSError
 typedef NS_ERROR_ENUM(SDWebImagePhotosErrorDomain, SDWebImagePhotosError) {
     /// Photos framework access is not authorized by user
     SDWebImagePhotosErrorNotAuthorized = 10001,
     /// Photos URL is not image asset type (like Video or Audio)
-    SDWebImagePhotosErrorNotImageAsset = 10002
+    SDWebImagePhotosErrorNotImageAsset = 10002,
+    /// Photos local identifier failed to query PHAsset, is this valid ?
+    SDWebImagePhotosErrorInvalidLocalIdentifier = 10003
 };

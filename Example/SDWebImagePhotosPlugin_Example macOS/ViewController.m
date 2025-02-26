@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <SDWebImagePhotosPlugin/SDWebImagePhotosPlugin.h>
+#import <SDWebImagePhotosPlugin/SDWebImagePhotosDefine.h>
 #import "TestCollectionViewItem.h"
 
 @interface ViewController () <NSCollectionViewDelegate, NSCollectionViewDataSource>
@@ -81,8 +82,18 @@
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     TestCollectionViewItem *cell = [collectionView makeItemWithIdentifier:@"TestCollectionViewItem" forIndexPath:indexPath];
     NSURL *photosURL = self.objects[indexPath.item];
+    BOOL supportsHDR = NSScreen.mainScreen.maximumPotentialExtendedDynamicRangeColorComponentValue > 1.0;
+    SDWebImageMutableContext *context = [@{SDWebImageContextStoreCacheType: @(SDImageCacheTypeNone)} mutableCopy];
+    if (supportsHDR) {
+        if (@available (macOS 14.0, *)) {
+            cell.imageViewDisplay.preferredImageDynamicRange = NSImageDynamicRangeHigh; // Enable Image View Level control for HDR
+        }
+        context[SDWebImageContextPhotosRequestImageData] = @(YES); // Photos Library only load HDR info when requestImageData
+        context[SDWebImageContextImageDecodeToHDR] = @(YES); // When decoding HDR data, we need explicit enable HDR decoding
+    }
+    cell.imageViewDisplay.animates = YES;
     cell.imageViewDisplay.sd_imageTransition = SDWebImageTransition.fadeTransition;
-    [cell.imageViewDisplay sd_setImageWithURL:photosURL placeholderImage:nil options:SDWebImageFromLoaderOnly context:@{SDWebImageContextStoreCacheType: @(SDImageCacheTypeNone)}];
+    [cell.imageViewDisplay sd_setImageWithURL:photosURL placeholderImage:nil options:SDWebImageFromLoaderOnly context:context];
     return cell;
 }
 

@@ -8,6 +8,7 @@
 
 #import "SDAppDelegate.h"
 #import "MasterViewController.h"
+#import <SDWebImage/SDWebImage.h>
 
 @implementation SDAppDelegate
 
@@ -17,9 +18,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if (@available(iOS 14.0, *)) {
+        [SDImageCodersManager.sharedManager addCoder:SDImageAWebPCoder.sharedCoder];
+    }
+    if (@available(iOS 13.0, *)) {
+        [SDImageCodersManager.sharedManager addCoder:SDImageHEICCoder.sharedCoder];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    // Override point for customization after application launch.
     
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
