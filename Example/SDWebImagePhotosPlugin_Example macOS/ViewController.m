@@ -91,6 +91,7 @@
         context[SDWebImageContextPhotosRequestImageData] = @(YES); // Photos Library only load HDR info when requestImageData
         context[SDWebImageContextImageDecodeToHDR] = @(YES); // When decoding HDR data, we need explicit enable HDR decoding
     }
+    cell.imageViewDisplay.animates = YES;
     cell.imageViewDisplay.sd_imageTransition = SDWebImageTransition.fadeTransition;
     [cell.imageViewDisplay sd_setImageWithURL:photosURL placeholderImage:nil options:SDWebImageFromLoaderOnly context:context];
     return cell;

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    if (@available(macOS 11.0, *)) {
+        [SDImageCodersManager.sharedManager addCoder:SDImageAWebPCoder.sharedCoder];
+    }
+    [SDImageCodersManager.sharedManager addCoder:SDImageHEICCoder.sharedCoder];
 }
 
 
