@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImagePhotosPlugin'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'A SDWebImage plugin to support Photos framework image loading.'
 
   s.description      = <<-DESC
