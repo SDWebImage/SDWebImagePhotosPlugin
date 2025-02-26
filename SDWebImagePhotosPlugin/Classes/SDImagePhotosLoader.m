@@ -86,12 +86,14 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     return self;
 }
 
+#if SD_UIKIT
 - (void)didReceiveMemoryWarning:(NSNotification *)notification {
     for (SDImagePhotosLoaderOperation *operation in self.operationsTable) {
         [operation cancel];
     }
     [self.operationsTable removeAllObjects];
 }
+#endif
 
 #pragma mark - Helper
 + (BOOL)isAnimatedImageWithUTType:(NSString *)UTType {
@@ -156,11 +158,20 @@ typedef CGImagePropertyOrientation SDImageOrientation;
             NSString *localIdentifier = url.sd_assetLocalIdentifier;
             PHFetchResult<PHAsset *> *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[localIdentifier] options:fetchOptions];
             asset = fetchResult.firstObject;
+            if (!asset) {
+                NSString *desc = [NSString stringWithFormat:@"Invalid PHAsset localIdentifier: %@", localIdentifier];
+                NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorInvalidLocalIdentifier userInfo:@{NSLocalizedDescriptionKey: desc}];
+                if (completedBlock) {
+                    completedBlock(nil, nil, error, YES);
+                }
+                return;
+            }
         }
         // Check whether we should request only image asset
-        if (!asset || (self.requestImageAssetOnly && asset.mediaType != PHAssetMediaTypeImage)) {
+        if (self.requestImageAssetOnly && asset.mediaType != PHAssetMediaTypeImage) {
             // Call error
-            NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorNotImageAsset userInfo:nil];
+            NSString *desc = [NSString stringWithFormat:@"Unsupported PHAsset localIdentifier: %d, PHAssetMediaType: %d", asset.localIdentifier, asset.mediaType];
+            NSError *error = [NSError errorWithDomain:SDWebImagePhotosErrorDomain code:SDWebImagePhotosErrorNotImageAsset userInfo:@{NSLocalizedDescriptionKey: desc}];
             if (completedBlock) {
                 completedBlock(nil, nil, error, YES);
             }
@@ -263,7 +274,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     
     __weak typeof(operation) weakOperation = operation;
     PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:targetSize contentMode:contentMode options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        if (weakOperation.isCancelled) {
+        if (weakOperation.isCancelled || [info[PHImageCancelledKey] boolValue]) {
             // Cancelled
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];
             if (completedBlock) {
@@ -319,7 +330,7 @@ typedef CGImagePropertyOrientation SDImageOrientation;
     
     __weak typeof(operation) weakOperation = operation;
     PHImageRequestID requestID = [(id<PHImageManager>)[PHImageManager defaultManager] requestImageDataForAsset:asset options:requestOptions resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, SDImageOrientation orientation, NSDictionary * _Nullable info) {
-        if (weakOperation.isCancelled) {
+        if (weakOperation.isCancelled || [info[PHImageCancelledKey] boolValue]) {
             // Cancelled
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];
             if (completedBlock) {
