@@ -149,6 +149,52 @@ SDImagePhotosLoader.shared.requestImageAssetOnly = false
 
 Then just request the PHAssets or using the fetch options, which the media type is `.video`.
 
+#### HDR Photo Rendering
+To enable HDR decoding and rendering, upgrade SDWebImage to 5.21.0+, then, request the image data from Photos Library and turn on HDR decoding.
+
++ Objective-C
+
+```objective-c
+#if TARGET_OS_OSX
+BOOL supportsHDR = NSScreen.mainScreen.maximumPotentialExtendedDynamicRangeColorComponentValue > 1.0;
+#else
+#define NSImageDynamicRangeHigh UIImageDynamicRangeHigh
+BOOL supportsHDR = UIScreen.mainScreen.potentialEDRHeadroom > 1.0;
+#endif
+SDWebImageMutableContext *context = [@{SDWebImageContextStoreCacheType: @(SDImageCacheTypeNone)} mutableCopy];
+if (supportsHDR) {
+    if (@available (macOS 14.0, iOS 17, *)) {
+        cell.imageViewDisplay.preferredImageDynamicRange = NSImageDynamicRangeHigh; // Enable Image View Level control for HDR
+    }
+    context[SDWebImageContextPhotosRequestImageData] = @(YES); // Photos Library only load HDR info when requestImageData
+    context[SDWebImageContextImageDecodeToHDR] = @(YES); // When decoding HDR data, we need explicit enable HDR decoding
+}
+// Then loading HDR assets with context option
+[imageView sd_setImageWithURL:photosURL placeholderImage:nil context:context];
+```
+
++ Swift
+
+```swift
+#if os(macOS)
+let supportsHDR = NSScreen.main.maximumPotentialExtendedDynamicRangeColorComponentValue > 1.0
+#else
+let supportsHDR = UIScreen.main.potentialEDRHeadroom > 1.0
+#endif
+var context = [
+    SDWebImageContextStoreCacheType: SDImageCacheType.none.rawValue
+]
+if supportsHDR {
+    if #available(macOS 14.0, iOS 17, *) {
+        cell.imageViewDisplay.preferredImageDynamicRange = .high // Enable Image View Level control for HDR
+    }
+    context[.photosRequestImageData] = true // Photos Library only load HDR info when requestImageData
+    context[.imageDecodeToHDR] = true // When decoding HDR data, we need explicit enable HDR decoding
+}
+// Then loading HDR assets with context option
+imageView.sd_setImage(with: photosURL, placeholderImage: nil, context:context)
+```
+
 #### Fetch/Request Options
 To specify options like `PHFetchOptions` or `PHImageRequestOptions` for Photos Library. Either to change the correspond properties in loader, or provide a context options for each image request.
 
